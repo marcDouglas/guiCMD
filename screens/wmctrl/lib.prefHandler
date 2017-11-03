@@ -1,0 +1,13 @@
+
+proc wmctrl_reader { preferenceFileName preferenceFolder } {
+        global numButCol wmctrl_pref_folder
+        file mkdir $wmctrl_pref_folder
+        cd $wmctrl_pref_folder
+        if { [ file exists numButCol.txt ] == 1 } { 
+                set fp [open numButCol.txt r]
+                set numButCol [read $fp]
+                close $fp
+        } else {
+            set numButCol [list]      
+        }
+}
