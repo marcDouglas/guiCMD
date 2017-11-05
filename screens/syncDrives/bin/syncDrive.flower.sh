@@ -6,7 +6,8 @@ echo "."
 echo "clone this file. then setup your own, this does nothing, must uncomment line below."
 echo "format is rsync -aAXv --delete --exclude={<see below, but excludes things that you really should, i add cache files and such as well>} <root folder> <destination folder>"
 
-#sudo rsync -aAXv --delete --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/srv/*","/var/cache/pacman/pkg"} / /mnt/wishnu/
+sudo rsync -aAXv --delete --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/srv/*","/var/cache/pacman/pkg","home/shawna/.cache/*","/home/shawna/Desktop/movies/*"} / /run/media/shawna/BumbleBee/backups/flower.11.2.17/
+
 
 
 sleep 1
