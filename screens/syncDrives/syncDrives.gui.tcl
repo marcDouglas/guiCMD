@@ -77,12 +77,12 @@ proc syncDrives_initialize { } {
                 vishnu {
                     set scriptLocation "bin/syncDrive.vishnu.sh"
                     set umountScriptLocation "bin/umount.vishnu.sh"
-                    guiTextInsert $scriptLocation
+                   # guiTextInsert $scriptLocation
                 }
                 flower {
                     set scriptLocation "bin/syncDrive.flower.sh"
                     set umountScriptLocation "bin/umount.flower.sh"
-                    guiTextInsert $scriptLocation
+                #    guiTextInsert $scriptLocation
                 } 
                 default {
                     set scriptLocation "bin/syncDrive.sh"
@@ -109,12 +109,13 @@ proc send_cmd { theCommand theOutputHandler  } {
 
 proc syncDrive { } {
     global scriptLocation
-    guiTextInsert $scriptLocation
+ #   guiTextInsert $scriptLocation
    # .f.syncDrives.localhost.t0 delete 1.0 end
+	set theCmd "lxterminal --command $scriptLocation"
 	#set theCmd "lxterminal --command \"bin/syncDrive.sh\""
     #set theCmd "bin/syncDrive.sh"
     #ifSolo
-    send_cmd $scriptLocation guiTextInsert
+    send_cmd $theCmd guiTextInsert
 
 
 }
