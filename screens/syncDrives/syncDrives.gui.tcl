@@ -116,8 +116,7 @@ proc syncDrive { } {
     #set theCmd "bin/syncDrive.sh"
     #ifSolo
     send_cmd $theCmd guiTextInsert
-
-
+    guiTextInsert "$scriptLocation is executing in outside window."
 }
 
 proc umount {  } {
