@@ -123,7 +123,9 @@ proc umount {  } {
     global umountScriptLocation
     .f.syncDrives.localhost.t0 delete 1.0 end
 	#set theCmd "bin/umount.sh"
-    send_cmd $umountScriptLocation guiTextInsert	
+    set theCmd "lxterminal --command $umountScriptLocation"
+
+    send_cmd $theCmd guiTextInsert	
 
 }
 
