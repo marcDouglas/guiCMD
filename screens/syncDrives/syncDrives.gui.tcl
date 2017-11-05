@@ -1,7 +1,6 @@
 proc ifSolo {} {
     if { [ file exists syncDrives.gui.tcl ] != 1 } {
       #  source syncDrives.gui.tcl
-      cd
       cd screens/syncDrives
     }
 }
@@ -55,7 +54,7 @@ proc syncDrive { host } {
     .f.syncDrives.localhost.t0 delete 1.0 end
 	#set theCmd "lxterminal --command \"bin/syncDrive.sh\""
     set theCmd "bin/syncDrive.sh"
-    ifSolo
+    #ifSolo
     send_cmd $theCmd outputParser$host $host
     #mountStatus vader2
 }
