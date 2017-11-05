@@ -103,13 +103,13 @@ proc shutdownSys { host } {
 }
 
 proc mount { host } {
-	set theCmd "lxterminal --command \"/home/marc/bin/$host.mount.sh\""
+	set theCmd "lxterminal --command \"bin/mount.sh\""
     send_cmd $theCmd outputParser$host $host
     #mountStatus vader2
 }
 
 proc umount { host } {
-	set theCmd "lxterminal --command \"/home/marc/bin/$host.umount.sh\""
+	set theCmd "lxterminal --command \"bin/umount.sh\""
     send_cmd $theCmd outputParser$host $host	
     #mountStatus vader2
 }
