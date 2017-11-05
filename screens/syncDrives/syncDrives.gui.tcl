@@ -84,6 +84,10 @@ proc syncDrives_initialize { } {
                     set umountScriptLocation "bin/umount.flower.sh"
                 #    guiTextInsert $scriptLocation
                 } 
+                vader {
+                   set scriptLocation "bin/syncDrive.vader.sh"
+                   set umountScriptLocation "bin/umount.vader.sh"
+				}
                 default {
                     set scriptLocation "bin/syncDrive.sh"
                     set umountScriptLocation "bin/umount.sh"
