@@ -12,50 +12,6 @@ source ../lib/preferenceHandler.tcl
 
 
 
-
-
-proc syncDrives_initialize { } {
-        global scriptLocation
-        global syncCommand
-        
-        #frame .syncDrivessyncDrives
-        #grid .syncDrives -column 0 -row 22     
-        labelframe .f.syncDrives.localhost -text "localhost" -width 600 -height 100
-        
-        button .f.syncDrives.localhost.h1 -text "syncDrive" -command "syncDrive"
-        button .f.syncDrives.localhost.h2 -text "umount" -command "umount"
-        text .f.syncDrives.localhost.t0 -width 80 -height 34
-        button .f.syncDrives.localhost.h3 -text "update status" -command "mountStatus"
-        .f.syncDrives.localhost.t0 insert end ""
-        
-       # menu .f.syncDrives.localhost.m0 -textvariable "backupLocal" -indicatoron 1 \
-            -relief raised -highlightthickness 1 -anchor c \
-            -direction flush
-      #  menu .f.syncDrives.localhost.m0 -tearoff 0
-      #  .f.syncDrives.localhost.m0.f.syncDrives.localhost.m0 add command -label "one"
-      #  .f.syncDrives.localhost.m0.f.syncDrives.localhost.m0 add command -label "number2"
-
-        
-        grid .f.syncDrives.localhost -column 0 -row 0
-        grid .f.syncDrives.localhost.h1 -column 0 -row 0
-        grid .f.syncDrives.localhost.h2 -column 1 -row 0
-        grid .f.syncDrives.localhost.h3 -column 2 -row 0
-       # grid .f.syncDrives.localhost.m0 -column 3 -row 0
-        grid .f.syncDrives.localhost.t0 -column 0 -row 1 -columnspan 3
-        
-        
-        proc guiTextInsert {cmdOutput} {
-            #.f.syncDrives.localhost.t0 delete 1.0 end
-			.f.syncDrives.localhost.t0 insert end "$cmdOutput\n"
-                update idletask
-		}
-        
-        proc guiTextReplace {cmdOutput} {
-			.f.syncDrives.localhost.t0 delete 1.0 end
-			.f.syncDrives.localhost.t0 insert end "$cmdOutput\n"
-		} 
-               
- 
         proc chooseWhichBack {} {
             global scriptLocation
             global umountScriptLocation
@@ -77,16 +33,23 @@ proc syncDrives_initialize { } {
                 vishnu {
                     set scriptLocation "bin/syncDrive.vishnu.sh"
                     set umountScriptLocation "bin/umount.vishnu.sh"
-                   # guiTextInsert $scriptLocation
+                    if { [ file isdirectory "/mnt/wishnu/backups/vishnu_7.7.17" ] == 1 } {
+						.f.syncDrives.localhost.circle itemconfig t2 -extent 0
+					} 
                 }
                 flower {
                     set scriptLocation "bin/syncDrive.flower.sh"
                     set umountScriptLocation "bin/umount.flower.sh"
-                #    guiTextInsert $scriptLocation
+                    if { [ file isdirectory "/run/media/shawna/BumbleBee/backups/flower.11.2.17" ] == 1 } {
+						.f.syncDrives.localhost.circle itemconfig t2 -extent 0
+					}               
                 } 
                 vader {
                    set scriptLocation "bin/syncDrive.vader.sh"
                    set umountScriptLocation "bin/umount.vader.sh"
+                   if { [ file isdirectory "/run/media/marc/wishnu/backups/vader.ssh.bkup" ] == 1 } {
+						.f.syncDrives.localhost.circle itemconfig t2 -extent 0
+					}
 				}
                 default {
                     set scriptLocation "bin/syncDrive.sh"
@@ -100,6 +63,56 @@ proc syncDrives_initialize { } {
             
             
         }
+
+proc syncDrives_initialize { } {
+        global scriptLocation
+        global syncCommand
+        
+        #frame .syncDrivessyncDrives
+        #grid .syncDrives -column 0 -row 22     
+        labelframe .f.syncDrives.localhost -text "localhost" -width 600 -height 100
+        
+        button .f.syncDrives.localhost.h1 -text "syncDrive" -command "syncDrive"
+        button .f.syncDrives.localhost.h2 -text "umount" -command "umount"
+        text .f.syncDrives.localhost.t0 -width 80 -height 34
+        button .f.syncDrives.localhost.h3 -text "update status" -command "mountStatus"
+        .f.syncDrives.localhost.t0 insert end ""
+        
+        #set tagCircle "statusCircle"
+        canvas .f.syncDrives.localhost.circle -width 25 -height 25 -highlightt 0
+        .f.syncDrives.localhost.circle create oval 2 2 24 24 -tags t1 -fill green -outline ""
+		.f.syncDrives.localhost.circle create arc 2 2 24 24 -tags t2 -fill red -extent 359 -outline ""
+		#.f.piControl.localhost.circle itemconfig t2 -extent 180
+        
+        
+       # menu .f.syncDrives.localhost.m0 -textvariable "backupLocal" -indicatoron 1 \
+            -relief raised -highlightthickness 1 -anchor c \
+            -direction flush
+      #  menu .f.syncDrives.localhost.m0 -tearoff 0
+      #  .f.syncDrives.localhost.m0.f.syncDrives.localhost.m0 add command -label "one"
+      #  .f.syncDrives.localhost.m0.f.syncDrives.localhost.m0 add command -label "number2"
+
+        
+        grid .f.syncDrives.localhost -column 0 -row 0
+        grid .f.syncDrives.localhost.h1 -column 0 -row 1
+        grid .f.syncDrives.localhost.h2 -column 1 -row 1
+        grid .f.syncDrives.localhost.h3 -column 2 -row 1
+        grid .f.syncDrives.localhost.circle -column 0 -row 0
+       # grid .f.syncDrives.localhost.m0 -column 3 -row 0
+        grid .f.syncDrives.localhost.t0 -column 0 -row 2 -columnspan 3
+        
+        
+        proc guiTextInsert {cmdOutput} {
+            #.f.syncDrives.localhost.t0 delete 1.0 end
+			.f.syncDrives.localhost.t0 insert end "$cmdOutput\n"
+                update idletask
+		}
+        
+        proc guiTextReplace {cmdOutput} {
+			.f.syncDrives.localhost.t0 delete 1.0 end
+			.f.syncDrives.localhost.t0 insert end "$cmdOutput\n"
+		} 
+        
 
         chooseWhichBack
 }
@@ -137,6 +150,7 @@ proc mountStatus {  } {
     .f.syncDrives.localhost.t0 delete 1.0 end
 	set theCmd "df -h"
     send_cmd $theCmd guiTextInsert	
+    chooseWhichBack
 	
 }
 
