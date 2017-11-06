@@ -21,7 +21,7 @@ proc piControl_initialize { } {
 			.f.piControl.localhost.t0 delete 1.0 end
 			.f.piControl.localhost.t0 insert end "$cmdOutput\n"
 		}        
-        set hosts { indy pi314 }
+        set hosts { pi314 pi315 piMaster}
         set hostRow 1
         foreach { host } $hosts {
 				labelframe .f.piControl.$host -text "$host" -width 600 -height 100
@@ -65,6 +65,7 @@ proc send_cmd { theCommand theOutputHandler host } {
 }
 
 proc ping { host } {
+    .f.piControl.$host.t0 delete 1.0 end
     .f.piControl.$host.circle itemconfig t2$host -extent 359
     update idletask
    	set theCmd "ping -c 1 $host"
@@ -74,6 +75,7 @@ proc ping { host } {
 }
 
 proc updateStatus { host } {
+    .f.piControl.$host.t0 delete 1.0 end
 	set theCmd "ssh marc@$host \"sudo systemctl status\""
     send_cmd $theCmd outputParser$host $host
     .f.piControl.$host.circle itemconfig t2$host -extent 0    
@@ -83,23 +85,31 @@ proc updateStatus { host } {
 
 
 proc restartWifi { host } {
+    .f.piControl.$host.t0 delete 1.0 end
 	#set theCmd "ssh marc@$host \"/home/marc/bin/restartWifi\""
     #send_cmd $theCmd outputParser$host $host	
+    .f.piControl.$host.t0 insert end "System $host is restarting Wifi.\n"
 }
 
 proc restartKodi { host } {
+    .f.piControl.$host.t0 delete 1.0 end
 	set theCmd "ssh marc@$host \"sudo systemctl restart kodi.service\""
     send_cmd $theCmd outputParser$host $host	
+    .f.piControl.$host.t0 insert end "System $host is restarting Kodi.\n"
 }
 
 proc restartSys { host } {
+    .f.piControl.$host.t0 delete 1.0 end
 	set theCmd "ssh marc@$host \"sudo reboot\""
     send_cmd $theCmd outputParser$host $host	
+    .f.piControl.$host.t0 insert end "System $host is rebooting.\n"
 }
 
 proc shutdownSys { host } {
+    .f.piControl.$host.t0 delete 1.0 end
 	set theCmd "ssh marc@$host \"sudo shutdown now\""
     send_cmd $theCmd outputParser$host $host	
+    .f.piControl.$host.t0 insert end "System $host is shutting down.\n"
 }
 
 proc mount { host } {

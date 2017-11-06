@@ -28,6 +28,7 @@ proc chooseWhichBack {} {
                 .f.syncDrives.localhost.circle itemconfig t2 -extent 0
                 statusTextReplace "Vishnu is ready to backup to Wishnu."
             } else {
+                .f.syncDrives.localhost.circle itemconfig t2 -extent 359
                 statusTextReplace "Wishnu is not mounted. Update Status"
             }
         }
@@ -38,6 +39,7 @@ proc chooseWhichBack {} {
                 .f.syncDrives.localhost.circle itemconfig t2 -extent 0
                 statusTextReplace "Flower is ready to backup to BumbleBee."
             } else {
+                .f.syncDrives.localhost.circle itemconfig t2 -extent 359
                 statusTextReplace "BumbleBee is not mounted. Update Status"
             }               
         } 
@@ -48,6 +50,7 @@ proc chooseWhichBack {} {
                 .f.syncDrives.localhost.circle itemconfig t2 -extent 0
                 statusTextReplace "Vader is ready to backup to Wishnu."
             } else {
+                .f.syncDrives.localhost.circle itemconfig t2 -extent 359
                 statusTextReplace "Wishnu is not mounted. Update Status"
             }
         }
@@ -70,7 +73,7 @@ proc syncDrives_initialize { } {
         
         button .f.syncDrives.localhost.h1 -text "syncDrive" -command "syncDrive"
         button .f.syncDrives.localhost.h2 -text "umount" -command "umount"
-        text .f.syncDrives.localhost.t0 -width 80 -height 34
+        text .f.syncDrives.localhost.t0 -width 80 -height 24
         button .f.syncDrives.localhost.h3 -text "update status" -command "mountStatus"
         .f.syncDrives.localhost.t0 insert end ""
         
