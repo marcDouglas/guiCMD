@@ -10,59 +10,55 @@ source syncDrives.file.tcl
 source ../lib/preferenceHandler.tcl
 
 
+proc statusTextReplace {statusText} {
+    .f.syncDrives.localhost.statusText delete 1.0 end
+    .f.syncDrives.localhost.statusText insert end "$statusText\n"
+}
 
+proc chooseWhichBack {} {
+    global scriptLocation
+    global umountScriptLocation
+    set host [info hostname] 
 
-        proc chooseWhichBack {} {
-            global scriptLocation
-            global umountScriptLocation
-            set host [info hostname] 
-            
-            #if { [ file isdirectory "/mnt/wishnu/backups/vishnu_7.7.17" ] == 1 } {
-                #outputParser [info hostname]
-                #set scriptLocation "bin/syncDrive.vishnu.sh"
-                #outputParser $scriptLocation
-               ## set syncCommand "sudo rsync -aAXv --delete --exclude={\"/dev/*\",\"/proc/*\",\"/sys/*\",\"/tmp/*\",\"/run/*\",\"/mnt/*\",\"/media/*\",\"/lost+found\",\"/srv/*\",\"home/marc/build/*\",\"/var/cache/pacman/pkg\",\"/home/marc/.android/*\",\"/home/marc/.cache/*\",\"home/marc/.local/share/Steam/*\",\"home/marc/documents/marcDouglas.us/public_html/android-apps/*\",\"/home/marc/downloads/*\",\"/opt/android-ndk/*\",\"/opt/android-studio/*\",\"/home/marc/.kodi/userdata/*\"} / /mnt/wishnu/backups/vishnu_7.7.17/"
-                ##outputParser $syncCommand
-            #} elseif { [ file isdirectory "/run/media/shawna/BumbleBee/backups/flower.11.2.17" ] == 1 } {
-                #set scriptLocation "/run/media/shawna/BumbleBee/backups/flower.11.2.17"
-                #outputParser $scriptLocation      
-            #}
-            
-            
-            switch $host {
-                vishnu {
-                    set scriptLocation "bin/syncDrive.vishnu.sh"
-                    set umountScriptLocation "bin/umount.vishnu.sh"
-                    if { [ file isdirectory "/mnt/wishnu/backups/vishnu_7.7.17" ] == 1 } {
-						.f.syncDrives.localhost.circle itemconfig t2 -extent 0
-					} 
-                }
-                flower {
-                    set scriptLocation "bin/syncDrive.flower.sh"
-                    set umountScriptLocation "bin/umount.flower.sh"
-                    if { [ file isdirectory "/run/media/shawna/BumbleBee/backups/flower.11.2.17" ] == 1 } {
-						.f.syncDrives.localhost.circle itemconfig t2 -extent 0
-					}               
-                } 
-                vader {
-                   set scriptLocation "bin/syncDrive.vader.sh"
-                   set umountScriptLocation "bin/umount.vader.sh"
-                   if { [ file isdirectory "/run/media/marc/wishnu/backups/vader.ssh.bkup" ] == 1 } {
-						.f.syncDrives.localhost.circle itemconfig t2 -extent 0
-					}
-				}
-                default {
-                    set scriptLocation "bin/syncDrive.sh"
-                    set umountScriptLocation "bin/umount.sh"
-                    guiTextInsert $scriptLocation
-                }
+    switch $host {
+        vishnu {
+            set scriptLocation "bin/syncDrive.vishnu.sh"
+            set umountScriptLocation "bin/umount.vishnu.sh"
+            if { [ file isdirectory "/mnt/wishnu/backups/vishnu_7.7.17" ] == 1 } {
+                .f.syncDrives.localhost.circle itemconfig t2 -extent 0
+                statusTextReplace "Vishnu is ready to backup to Wishnu."
+            } else {
+                statusTextReplace "Wishnu is not mounted. Update Status"
             }
-            
-            
-            
-            
-            
         }
+        flower {
+            set scriptLocation "bin/syncDrive.flower.sh"
+            set umountScriptLocation "bin/umount.flower.sh"
+            if { [ file isdirectory "/run/media/shawna/BumbleBee/backups/flower.11.2.17" ] == 1 } {
+                .f.syncDrives.localhost.circle itemconfig t2 -extent 0
+                statusTextReplace "Flower is ready to backup to BumbleBee."
+            } else {
+                statusTextReplace "BumbleBee is not mounted. Update Status"
+            }               
+        } 
+        vader {
+           set scriptLocation "bin/syncDrive.vader.sh"
+           set umountScriptLocation "bin/umount.vader.sh"
+           if { [ file isdirectory "/run/media/marc/wishnu/backups/vader.ssh.bkup" ] == 1 } {
+                .f.syncDrives.localhost.circle itemconfig t2 -extent 0
+                statusTextReplace "Vader is ready to backup to Wishnu."
+            } else {
+                statusTextReplace "Wishnu is not mounted. Update Status"
+            }
+        }
+        default {
+            set scriptLocation "bin/syncDrive.sh"
+            set umountScriptLocation "bin/umount.sh"
+            guiTextInsert $scriptLocation
+        }
+    }
+  
+}
 
 proc syncDrives_initialize { } {
         global scriptLocation
@@ -83,6 +79,7 @@ proc syncDrives_initialize { } {
         .f.syncDrives.localhost.circle create oval 2 2 24 24 -tags t1 -fill green -outline ""
 		.f.syncDrives.localhost.circle create arc 2 2 24 24 -tags t2 -fill red -extent 359 -outline ""
 		#.f.piControl.localhost.circle itemconfig t2 -extent 180
+        text .f.syncDrives.localhost.statusText -width 40 -height 1
         
         
        # menu .f.syncDrives.localhost.m0 -textvariable "backupLocal" -indicatoron 1 \
@@ -98,26 +95,30 @@ proc syncDrives_initialize { } {
         grid .f.syncDrives.localhost.h2 -column 1 -row 1
         grid .f.syncDrives.localhost.h3 -column 2 -row 1
         grid .f.syncDrives.localhost.circle -column 0 -row 0
+        grid .f.syncDrives.localhost.statusText -column 1 -row 0
        # grid .f.syncDrives.localhost.m0 -column 3 -row 0
         grid .f.syncDrives.localhost.t0 -column 0 -row 2 -columnspan 3
         
         
-        proc guiTextInsert {cmdOutput} {
-            #.f.syncDrives.localhost.t0 delete 1.0 end
-			.f.syncDrives.localhost.t0 insert end "$cmdOutput\n"
-                update idletask
-		}
-        
-        proc guiTextReplace {cmdOutput} {
-			.f.syncDrives.localhost.t0 delete 1.0 end
-			.f.syncDrives.localhost.t0 insert end "$cmdOutput\n"
-		} 
+
         
 
         chooseWhichBack
 }
 
+proc guiTextInsert {cmdOutput} {
+    #.f.syncDrives.localhost.t0 delete 1.0 end
+    .f.syncDrives.localhost.t0 insert end "$cmdOutput\n"
+        update idletask
+}
 
+proc guiTextReplace {cmdOutput} {
+    .f.syncDrives.localhost.t0 delete 1.0 end
+    .f.syncDrives.localhost.t0 insert end "$cmdOutput\n"
+}
+
+
+        
 proc send_cmd { theCommand theOutputHandler  } {
   global f
   set f [ open "| $theCommand |& cat" "r+"]
