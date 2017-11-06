@@ -17,8 +17,10 @@ proc mpdController_initialize { } {
     #labelframe .f.syncDrives.localhost -text "localhost" -width 600 -height 100
     
     button .f.mpdController.localhost.h1 -text "Client" -command "start_Echo_Client"
-    button .f.mpdController.localhost.h2 -text "Stop Server" -command "stop_Echo_Server"
-    
+    #set cmd "list album group albumartist"
+    button .f.mpdController.localhost.h2 -text "mpdServer:play" -command "sendTo_mpd_Server"
+    button .f.mpdController.localhost.h3 -text "mpdServer:pause" -command "sendTo_mpd_Server2 pause"
+   
     text .f.mpdController.localhost.t0 -width 80 -height 24
     canvas .f.mpdController.localhost.circle -width 25 -height 25 -highlightt 0
     .f.mpdController.localhost.circle create oval 2 2 24 24 -tags t1 -fill green -outline ""
@@ -29,7 +31,7 @@ proc mpdController_initialize { } {
     grid .f.mpdController.localhost -column 0 -row 0
     grid .f.mpdController.localhost.h1 -column 0 -row 1
     grid .f.mpdController.localhost.h2 -column 1 -row 1
-    #grid .f.mpdController.localhost.h3 -column 2 -row 1
+    grid .f.mpdController.localhost.h3 -column 2 -row 1
     grid .f.mpdController.localhost.circle -column 0 -row 0
     grid .f.mpdController.localhost.statusText -column 1 -row 0
     # grid .f.mpdController.localhost.m0 -column 3 -row 0
@@ -144,6 +146,9 @@ proc start_Echo_Client_Only_Once {} {
     global client_on_state
     global s
     if { [info exists client_on_state] } { 
+        puts $s "client_on_state is TRUE."
+        gets $s line
+        puts $line
         return 
     } else { 
         set s [Echo_Client localhost 8888]
@@ -171,5 +176,44 @@ proc start_Echo_Client { } {
     puts $line
 }
 
+###################################################################3
 
+proc sendTo_mpd_Server { } {
+   # global m
+    set m [Echo_Client localhost 6600]
+   # start_mpd_Client_Only_Once
+    
+    #puts $m "pause\n"
+    puts $m "list album group albumartist\n"
+   # puts $m "Joyful!"
+   # puts $m "Fellow!"
+    while {[gets $m line] >= 0} {
+        #puts $line
+        guiTextInsert_mpd $line
+    }
+    puts "finished."
+    #gets $m line
+    #puts $line
+    #gets $m line
+    #puts $line
 
+}
+
+proc sendTo_mpd_Server2 { cmd } {
+   # global m
+    set m [Echo_Client localhost 6600]
+   # start_mpd_Client_Only_Once
+    
+    #puts $m "pause\n"
+    puts $m "$cmd\n"
+   # puts $m "Joyful!"
+   # puts $m "Fellow!"
+    while {[gets $m line] >= 0} {
+        puts $line
+    }
+    #gets $m line
+    #puts $line
+    #gets $m line
+    #puts $line
+
+}
