@@ -1,7 +1,9 @@
+
+
 proc piControl_initialize { } {
         #frame .piControl
         #grid .piControl -column 0 -row 22     
-        labelframe .f.piControl.localhost -text "localhost" -width 600 -height 100
+        labelframe .f.piControl.localhost -text [info hostname] -width 600 -height 100
         
         button .f.piControl.localhost.h1 -text "mount" -command "mount vader"
         button .f.piControl.localhost.h2 -text "umount" -command "umount vader"
@@ -21,7 +23,20 @@ proc piControl_initialize { } {
 			.f.piControl.localhost.t0 delete 1.0 end
 			.f.piControl.localhost.t0 insert end "$cmdOutput\n"
 		}        
-        set hosts { pi314 pi315 piMaster}
+        switch [info hostname] {
+            vishnu {
+                set hosts { pi314 pi315 vader }
+            }
+            tiger {
+                set hosts { pi314 pi315 piMaster }
+            }
+            vader {
+                set hosts { pi314 pi315 vishnu }
+            }
+            default {
+                set hosts { pi314 pi315 }
+            }
+        }
         set hostRow 1
         foreach { host } $hosts {
 				labelframe .f.piControl.$host -text "$host" -width 600 -height 100

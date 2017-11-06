@@ -54,6 +54,17 @@ proc chooseWhichBack {} {
                 statusTextReplace "Wishnu is not mounted. Update Status"
             }
         }
+        tiger {
+           set scriptLocation "bin/syncDrive.tiger.sh"
+           set umountScriptLocation "bin/umount.tiger.sh"
+           if { [ file isdirectory "/run/pidrive/marc/piDrive/backups/tiger.bkup" ] == 1 } {
+                .f.syncDrives.localhost.circle itemconfig t2 -extent 0
+                statusTextReplace "Tiger is ready to backup to Wishnu."
+            } else {
+                .f.syncDrives.localhost.circle itemconfig t2 -extent 359
+                statusTextReplace "Tiger is not mounted. Update Status"
+            }
+        }
         default {
             set scriptLocation "bin/syncDrive.sh"
             set umountScriptLocation "bin/umount.sh"
