@@ -72,9 +72,9 @@ proc syncDrives_initialize { } {
         labelframe .f.syncDrives.localhost -text "localhost" -width 600 -height 100
         
         button .f.syncDrives.localhost.h1 -text "syncDrive" -command "syncDrive"
-        button .f.syncDrives.localhost.h2 -text "umount" -command "umount"
+        button .f.syncDrives.localhost.h2 -text "umount" -command "umountSync"
         text .f.syncDrives.localhost.t0 -width 80 -height 24
-        button .f.syncDrives.localhost.h3 -text "update status" -command "mountStatus"
+        button .f.syncDrives.localhost.h3 -text "update status" -command "mountStatusSync"
         .f.syncDrives.localhost.t0 insert end ""
         
         #set tagCircle "statusCircle"
@@ -122,10 +122,10 @@ proc guiTextReplace {cmdOutput} {
 
 
         
-proc send_cmd { theCommand theOutputHandler  } {
+proc send_cmd_sync { theCommand theOutputHandler  } {
   global f
   set f [ open "| $theCommand |& cat" "r+"]
-  fileevent $f readable "doThis $theOutputHandler"
+  fileevent $f readable "doThis_sync $theOutputHandler"
 }
 
 proc syncDrive { } {
@@ -136,33 +136,33 @@ proc syncDrive { } {
 	#set theCmd "lxterminal --command \"bin/syncDrive.sh\""
     #set theCmd "bin/syncDrive.sh"
     #ifSolo
-    send_cmd $theCmd guiTextInsert
+    send_cmd_sync $theCmd guiTextInsert
     guiTextInsert "$scriptLocation is executing in outside window."
 }
 
-proc umount {  } {
+proc umountSync {  } {
     global umountScriptLocation
     .f.syncDrives.localhost.t0 delete 1.0 end
 	#set theCmd "bin/umount.sh"
     set theCmd "lxterminal --command $umountScriptLocation"
 
-    send_cmd $theCmd guiTextInsert	
+    send_cmd_sync $theCmd guiTextInsert	
 
 }
 
-proc mountStatus {  } {
+proc mountStatusSync {  } {
     .f.syncDrives.localhost.t0 delete 1.0 end
 	set theCmd "df -h"
-    send_cmd $theCmd guiTextInsert	
+    send_cmd_sync $theCmd guiTextInsert	
     chooseWhichBack
 	
 }
 
-proc parseCmdOut {cmdOutput} {
+proc parseCmdOut_sync {cmdOutput} {
 	.log insert end "$cmdOutput"
 }
 
-proc doThis { theOutputHandler  } {
+proc doThis_sync { theOutputHandler  } {
   global f
 
   if { [eof $f] } {
@@ -182,5 +182,5 @@ proc doThis { theOutputHandler  } {
 			$theOutputHandler "no output"
 		}
   }
-    #puts "finished doThis"
+    #puts "finished doThis_sync"
 }
