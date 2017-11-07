@@ -1,0 +1,9 @@
+[Unit]
+Description=mpdSync.  copy this file "sudo cp mpdSync.service /usr/lib/systemd/system/." then "sudo systemctl start mpdSync;sudo systemctl enable mpdSync" 
+
+[Service]
+Type=simple
+ExecStart=/home/marc/bin/guicmd/screens/mpdController/systemd/mpdSync.service.tcl
+
+[Install]
+WantedBy=multi-user.target
