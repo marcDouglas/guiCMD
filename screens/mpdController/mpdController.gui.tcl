@@ -11,6 +11,8 @@ source ../lib/preferenceHandler.tcl
 #package require Tclx
 package require Thread
 
+source avahi/discover.tcl
+
 
 proc mpdController_initialize { } {
     labelframe .f.mpdController.localhost -text "localhost" -width 600 -height 100
@@ -18,7 +20,7 @@ proc mpdController_initialize { } {
     
     button .f.mpdController.localhost.h1 -text "Client" -command "start_Echo_Client"
     #set cmd "list album group albumartist"
-    button .f.mpdController.localhost.h2 -text "mpdServer:play" -command "sendTo_mpd_Server"
+    button .f.mpdController.localhost.h2 -text "discovery" -command "findServersAvahi"
     button .f.mpdController.localhost.h3 -text "mpdServer:pause" -command "sendTo_mpd_Server2 pause"
    
     text .f.mpdController.localhost.t0 -width 80 -height 24
@@ -35,7 +37,7 @@ proc mpdController_initialize { } {
     grid .f.mpdController.localhost.circle -column 0 -row 0
     grid .f.mpdController.localhost.statusText -column 1 -row 0
     # grid .f.mpdController.localhost.m0 -column 3 -row 0
-    grid .f.mpdController.localhost.t0 -column 0 -row 2 -columnspan 3
+    grid .f.mpdController.localhost.t0 -column 0 -row 3 -columnspan 3
     start_Echo_Server
 }
 proc guiTextInsert_mpd {cmdOutput} {
@@ -47,6 +49,26 @@ proc guiTextInsert_mpd {cmdOutput} {
 proc guiTextReplace_mpd {cmdOutput} {
     .f.mpdController.localhost.t0 delete 1.0 end
     .f.mpdController.localhost.t0 insert end "$cmdOutput\n"
+}
+
+proc findServersAvahi { } {
+    discoveryAvahi
+    global hosts
+    global interfaces
+    global ipAddresses
+    global ports
+    
+    guiTextInsert_mpd $hosts
+    guiTextInsert_mpd $ipAddresses
+    
+    set i 0
+    foreach host $hosts {
+        set tmp "$host [lindex $ipAddresses $i]"
+        checkbutton .f.mpdController.localhost.clients$i -text $tmp
+        grid .f.mpdController.localhost.clients$i -column $i -row 2
+        incr i
+    }
+        
 }
 
 
