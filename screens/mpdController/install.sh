@@ -7,3 +7,5 @@ sudo systemctl restart mpdSync
 #sudo systemctl enable mpdSync
 #sudo systemctl status mpdSync
 sudo systemctl restart avahi-daemon.service
+
+echo 'mpdsync and avahi-daemon restarted.'

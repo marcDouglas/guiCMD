@@ -134,7 +134,7 @@ proc syncHostSend { msg } {
     global syncHosts   
     foreach {i host} [array get syncHosts] {
         puts $host "[info hostname] sendTest\n"
-        guiTextInsert_mpd "syncHostSend:[lindex $hosts $i]:[lindex $ports $i]"
+        guiTextInsert_mpd "syncHostSend:[lindex $hosts $i]-[lindex $ipAddresses $i]:[lindex $ports $i]"
 
     }
 }
