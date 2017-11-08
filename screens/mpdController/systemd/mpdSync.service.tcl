@@ -59,7 +59,7 @@ proc mpdSync_Server {port} {
 
 proc start_mpdSync_Server { } {
         puts "mpdSync Server has started on port 8887."
-        mpdSync_Server 8886
+        mpdSync_Server 8887
         vwait forever
 
 }
