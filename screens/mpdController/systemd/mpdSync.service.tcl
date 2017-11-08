@@ -7,7 +7,7 @@ proc mpd_Client {host port} {
     return $s
 }
 
-proc sendTo_mpd { $cmd } {
+proc sendTo_mpd { cmd } {
     set m [mpd_Client localhost 6600]
     puts $m $cmd
 }
