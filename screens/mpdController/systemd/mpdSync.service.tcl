@@ -7,9 +7,9 @@ proc mpd_Client {host port} {
     return $s
 }
 
-proc sendTo_mpd { } {
+proc sendTo_mpd { $cmd } {
     set m [mpd_Client localhost 6600]
-    puts $m "pause"
+    puts $m $cmd
 }
 
 
@@ -27,9 +27,9 @@ proc mpdSync_Server_reply {sock} {
         unset connectedServers(addr,$sock)
     } else {
         puts $sock $line
-        puts "connectedServers : $sock-$line"
+        puts "Client\[$sock\] \'$line\'"
     }
-    sendTo_mpd
+    sendTo_mpd $line
 }
 
 proc mpdSync_Server_Accept {sock addr port} {

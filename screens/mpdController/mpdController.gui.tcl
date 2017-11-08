@@ -113,7 +113,7 @@ proc connectClients { } {
         incr i
         guiTextInsert_mpd "\[$hostCheckButton($i)\][lindex $ipAddresses $i] [lindex $ports $i]"
         if { $hostCheckButton($i) ==  1 } {
-              syncHostConnect $i
+              set sock [syncHostConnect $i]
         } else {
             syncHostDisconnect $i
         }
@@ -133,14 +133,15 @@ proc syncHostConnect { i } {
     }
     guiTextInsert_mpd "connecting:[lindex $hosts $i]:[lindex $ports $i]"
     set sock [netClient [lindex $hosts $i] [lindex $ports $i]]
-    set syncHosts($i) $sock
-    puts $syncHosts($i) "[info hostname] is connected."
+    
+    if { $sock != -1 } {
+        set syncHosts($i) $sock
+        guiTextInsert_mpd "success talking to:[lindex $hosts $i]:[lindex $ports $i]"
+    } else {
+        guiTextInsert_mpd "failed to connect to:[lindex $hosts $i]:[lindex $ports $i]"
+    }
 
-    guiTextInsert_mpd "success talking to:[lindex $hosts $i]:[lindex $ports $i]"
-
-    #while {[gets $syncHosts($i) line] >= 0} {
-    #    puts $line
-    #}  
+    return $sock
 }
 
 proc syncHostDisconnect { i } {
@@ -169,7 +170,21 @@ proc syncHostSend { msg } {
         if { $hostCheckButton($i) ==  0 } {
             syncHostDisconnect $i
         } else {
-            puts $host "[info hostname] sendTest."
+            if { [catch { puts $host $msg } ] } {
+                guiTextInsert_mpd "$host connection FAILED."
+                syncHostDisconnect $i
+                set host [syncHostConnect $i]
+                if { [catch { puts $host $msg } ] } {
+                    guiTextInsert_mpd "$host connection FAILED twice. "
+                    syncHostDisconnect $i
+                    set host [syncHostConnect $i]
+                     if { [catch { puts $host $msg } ] } {
+                        guiTextInsert_mpd "$host connection FAILED three times, setting down. "
+                        syncHostDisconnect $i
+                        set hostCheckButton($i) 0
+                    }
+                }
+            }
             guiTextInsert_mpd "syncHostSend:[lindex $hosts $i]-[lindex $ipAddresses $i]:[lindex $ports $i]"
         }
     }
@@ -247,8 +262,11 @@ proc start_mpdSync_Server { } {
 
 
 proc netClient {host port} {
-    set s [socket $host $port]
-    fconfigure $s -buffering line
+    if {[catch { set s [socket $host $port] } ]} {
+        set s -1
+    } else {
+        fconfigure $s -buffering line
+    }
     return $s
 }
 
