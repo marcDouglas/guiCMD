@@ -9,7 +9,7 @@ proc mpd_Client {host port} {
 
 proc sendTo_mpd { } {
     set m [mpd_Client localhost 6600]
-    puts $m "pause\n"
+    puts $m "pause"
 }
 
 
