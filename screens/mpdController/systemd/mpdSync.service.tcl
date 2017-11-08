@@ -26,8 +26,13 @@ proc mpdSync_Server_reply {sock} {
         close $sock
         unset connectedServers(addr,$sock)
     } else {
-        puts $sock $line
-        puts "Client\[$sock\] \'$line\'"
+        if { [catch { puts $sock $line } ]} {
+            puts "Client\[$sock\] dropped."
+            close $sock
+            unset connectedServers(addr,$sock)
+        } else {
+            puts "Client\[$sock\] \'$line\'"
+        }
     }
     sendTo_mpd $line
 }

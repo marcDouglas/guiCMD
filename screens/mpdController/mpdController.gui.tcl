@@ -26,7 +26,7 @@ proc mpdController_initialize { } {
     button .f.mpdController.localhost.h1 -text "sync" -command "connectClients"
     #set cmd "list album group albumartist"
     button .f.mpdController.localhost.h2 -text "discovery" -command "findServersAvahi"
-    button .f.mpdController.localhost.h3 -text "mpdServer:pause" -command "sendTo_mpd_Server2 pause"
+    button .f.mpdController.localhost.h3 -text "mpdServer:pause" -command "sendTo_mpd_Server2 play"
     button .f.mpdController.localhost.h4 -text "multipause" -command "syncHostSend pause"
 
     text .f.mpdController.localhost.t0 -width 80 -height 12
@@ -289,7 +289,7 @@ proc sendTo_mpd_Server { } {
 proc sendTo_mpd_Server2 { cmd } {
     set m [netClient localhost 6600]
 
-    puts $m "$cmd\n"
+    puts $m "$cmd"
 
     while {[gets $m line] >= 0} {
         puts $line
