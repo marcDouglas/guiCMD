@@ -1,4 +1,5 @@
 #!/bin/bash
+echo 'mpdSync installing Avahi and Systemd services.'
 
 sudo cp avahi/mpdSync.service /etc/avahi/services/mpdSync.service
 sudo cp systemd/mpdSync.service /usr/lib/systemd/system/mpdSync.service

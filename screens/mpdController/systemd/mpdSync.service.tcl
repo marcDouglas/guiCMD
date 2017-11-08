@@ -12,58 +12,56 @@ proc sendTo_mpd { } {
     puts $m "pause\n"
 }
 
-        proc mpdSync_Server {port} {
-            global echo_server_state
-            set echo_server_state go
-            set s [socket -server mpdSyncAccept $port]
-            vwait echo_server_state
-            close $s
-            guiTextInsert_mpd "mpdSync Server has exited."
-        }
-        proc mpdSyncAccept {sock addr port} {
-            global echo
-        
-            # Record the client's information
-        
-            puts "Accept $sock from $addr port $port"
-            set echo(addr,$sock) [list $addr $port]
-        
-            # Ensure that each "puts" by the server
-            # results in a network transmission
-        
-            fconfigure $sock -buffering line
-        
-            # Set up a callback for when the client sends data
-        
-            fileevent $sock readable [list Echo $sock]
-        }
-        proc Echo {sock} {
-            global echo
-        
-            # Check end of file or abnormal connection drop,
-            # then echo data back to the client.
-        
-            if {[eof $sock] || [catch {gets $sock line}]} {
-                puts "Close $echo(addr,$sock)"
-                close $sock
-                unset echo(addr,$sock)
-            } else {
-                puts $sock $line
-                puts "else : $sock-$line"
-            }
-            sendTo_mpd
-        }
 
-proc start_mpdSync_Server { } {
-    #set id [thread::create {
-        puts "mpdSync Server has started on port 8887."
+#######################Sync Server procs##########################
 
-        mpdSync_Server 8887
-         vwait forever
-       # thread::wait
+proc mpdSync_Server_reply {sock} {
+    global connectedServers
 
-   # }] ;# thread::create   set pid [fork]
+    # Check end of file or abnormal connection drop,
+    # then connectedServers data back to the client.
 
+    if {[eof $sock] || [catch {gets $sock line}]} {
+        puts "Close $connectedServers(addr,$sock)"
+        close $sock
+        unset connectedServers(addr,$sock)
+    } else {
+        puts $sock $line
+        puts "connectedServers : $sock-$line"
+    }
+    sendTo_mpd
 }
 
+proc mpdSync_Server_Accept {sock addr port} {
+    global connectedServers
+
+    # Record the client's information
+
+    puts "Accept $sock from $addr port $port"
+    set connectedServers(addr,$sock) [list $addr $port]
+
+    # Ensure that each "puts" by the server
+    # results in a network transmission
+
+    fconfigure $sock -buffering line
+
+    # Set up a callback for when the client sends data
+
+    fileevent $sock readable [list mpdSync_Server_reply $sock]
+}
+proc mpdSync_Server {port} {
+    global mpdSync_Server_state
+    set mpdSync_Server_state go
+    set s [socket -server mpdSync_Server_Accept $port]
+    vwait mpdSync_Server_state
+    close $s
+}
+
+proc start_mpdSync_Server { } {
+        puts "mpdSync Server has started on port 8887."
+        mpdSync_Server 8886
+        vwait forever
+
+}
+#################################################################
 start_mpdSync_Server

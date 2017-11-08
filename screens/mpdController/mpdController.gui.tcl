@@ -15,6 +15,7 @@ source avahi/discover.tcl
 
 global syncHosts
 array set syncHosts []
+array set syncClients []
     
     
 proc mpdController_initialize { } {
@@ -44,7 +45,7 @@ proc mpdController_initialize { } {
     grid .f.mpdController.localhost.h4 -column 2 -row 0
     # grid .f.mpdController.localhost.m0 -column 3 -row 0
     grid .f.mpdController.localhost.t0 -column 0 -row 5 -columnspan 3
-    start_Echo_Server
+    start_mpdSync_Server
 }
 proc guiTextInsert_mpd {cmdOutput} {
     #.f.syncDrives.localhost.t0 delete 1.0 end
@@ -58,15 +59,26 @@ proc guiTextReplace_mpd {cmdOutput} {
 }
 
 proc findServersAvahi { } {
-    discoveryAvahi
     global hosts
     global interfaces
     global ipAddresses
     global ports
-    global hostCheckButtons
+    global hostCheckButton
+
+    set i 0
+    if {[info exists hosts]} {
+        foreach host $hosts {
+            destroy .f.mpdController.localhost.clients$i
+            incr i
+        }
+    }
+    
+    discoveryAvahi
     
    # guiTextInsert_mpd $hosts
    # guiTextInsert_mpd $ipAddresses
+    
+    
     
     set i 0
     set row 2
@@ -102,6 +114,8 @@ proc connectClients { } {
         guiTextInsert_mpd "\[$hostCheckButton($i)\][lindex $ipAddresses $i] [lindex $ports $i]"
         if { $hostCheckButton($i) ==  1 } {
               syncHostConnect $i
+        } else {
+            syncHostDisconnect $i
         }
     }
     
@@ -113,16 +127,33 @@ proc syncHostConnect { i } {
     global ipAddresses
     global ports
     global syncHosts
+    if {[info exists syncHosts($i)]} {
+        guiTextInsert_mpd "already connected, returning:[lindex $hosts $i]:[lindex $ports $i]"
+        return
+    }
     guiTextInsert_mpd "connecting:[lindex $hosts $i]:[lindex $ports $i]"
-    set sock [Echo_Client [lindex $hosts $i] [lindex $ports $i]]
+    set sock [netClient [lindex $hosts $i] [lindex $ports $i]]
     set syncHosts($i) $sock
-    puts $syncHosts($i) "[info hostname] is connected\n"
+    puts $syncHosts($i) "[info hostname] is connected."
 
     guiTextInsert_mpd "success talking to:[lindex $hosts $i]:[lindex $ports $i]"
 
     #while {[gets $syncHosts($i) line] >= 0} {
     #    puts $line
     #}  
+}
+
+proc syncHostDisconnect { i } {
+    global hosts
+    global interfaces
+    global ipAddresses
+    global ports
+    global syncHosts
+    if {[info exists syncHosts($i)]} {
+        guiTextInsert_mpd "closing connection to:[lindex $hosts $i]:[lindex $ports $i]"
+        close $syncHosts($i)
+        unset syncHosts($i)
+    }
 }
 
 proc syncHostSend { msg } {
@@ -132,50 +163,55 @@ proc syncHostSend { msg } {
     global ipAddresses
     global ports
     global syncHosts   
-    foreach {i host} [array get syncHosts] {
-        puts $host "[info hostname] sendTest\n"
-        guiTextInsert_mpd "syncHostSend:[lindex $hosts $i]-[lindex $ipAddresses $i]:[lindex $ports $i]"
+    global hostCheckButton
 
+    foreach {i host} [array get syncHosts] {
+        if { $hostCheckButton($i) ==  0 } {
+            syncHostDisconnect $i
+        } else {
+            puts $host "[info hostname] sendTest."
+            guiTextInsert_mpd "syncHostSend:[lindex $hosts $i]-[lindex $ipAddresses $i]:[lindex $ports $i]"
+        }
     }
 }
 
 
-proc stop_Echo_Server { } {
-    global echo_server_state
-    guiTextInsert_mpd "Stopping Echo Server."
-    set echo_server_state stop
+proc stop_mpdSync_Server { } {
+    global mpdSync_server_state
+    guiTextInsert_mpd "Stopping mpdSync Server."
+    set mpdSync_server_state stop
 }
 
-proc Echo_Server {port} {
-    global echo_server_state
-    set echo_server_state go
+proc mpdSync_Server {port} {
+    global mpdSync_server_state
+    set mpdSync_server_state go
     guiTextInsert_mpd "Starting Echo Server."
-    set s [socket -server EchoAccept $port]
-    vwait echo_server_state
+    set s [socket -server mpdSync_Server_Accept $port]
+    vwait mpdSync_server_state
     close $s
     guiTextInsert_mpd "Echo Server has exited."
 
 }
 
-proc start_Echo_Server { } {
+proc start_mpdSync_Server { } {
     set id [thread::create {
         puts "I am the Child. I start Echo Server on port 8888 now..."
-        proc Echo_Server {port} {
-            global echo_server_state
-            set echo_server_state go
+        proc mpdSync_Server {port} {
+            global mpdSync_server_state
+            set mpdSync_server_state go
             #guiTextInsert_mpd "Starting Echo Server."
-            set s [socket -server EchoAccept $port]
-            vwait echo_server_state
+            set s [socket -server mpdSync_Server_Accept $port]
+            vwait mpdSync_server_state
             close $s
-            guiTextInsert_mpd "Echo Server has exited."
+            guiTextInsert_mpd "mpdSync Server has exited."
         }
-        proc EchoAccept {sock addr port} {
-            global echo
+        proc mpdSync_Server_Accept {sock addr port} {
+            global connectedServers
         
             # Record the client's information
         
             puts "Accept $sock from $addr port $port"
-            set echo(addr,$sock) [list $addr $port]
+            set connectedServers(addr,$sock) [list $addr $port]
         
             # Ensure that each "puts" by the server
             # results in a network transmission
@@ -184,24 +220,24 @@ proc start_Echo_Server { } {
         
             # Set up a callback for when the client sends data
         
-            fileevent $sock readable [list Echo $sock]
+            fileevent $sock readable [list mpdSync_Server_reply $sock]
         }
-        proc Echo {sock} {
-            global echo
+        proc mpdSync_Server_reply {sock} {
+            global connectedServers
         
             # Check end of file or abnormal connection drop,
-            # then echo data back to the client.
+            # then connectedServers data back to the client.
         
             if {[eof $sock] || [catch {gets $sock line}]} {
-                puts "Close $echo(addr,$sock)"
+                puts "Close $connectedServers(addr,$sock)"
                 close $sock
-                unset echo(addr,$sock)
+                unset connectedServers(addr,$sock)
             } else {
                 puts $sock $line
                 puts "else : $sock-$line"
             }
         }
-        Echo_Server 8888
+        mpdSync_Server 8888
         thread::wait
 
     }] ;# thread::create   set pid [fork]
@@ -210,72 +246,30 @@ proc start_Echo_Server { } {
 
 
 
-proc Echo_Client {host port} {
+proc netClient {host port} {
     set s [socket $host $port]
     fconfigure $s -buffering line
     return $s
-}
-
-
-proc start_Echo_Client_Only_Once {} {
-    global client_on_state
-    global s
-    if { [info exists client_on_state] } { 
-        puts $s "client_on_state is TRUE."
-        gets $s line
-        puts $line
-        return 
-    } else { 
-        set s [Echo_Client localhost 8888]
-        set client_on_state 42
-    }
-}
-
-proc start_Echo_Client { } {
-    global s
-    #set s [Echo_Client localhost 8888]
-    start_Echo_Client_Only_Once
-    
-    puts $s "Hello!"
-    puts $s "There!"
-    puts $s "Joyful!"
-    puts $s "Fellow!"
-
-    gets $s line
-    puts $line
-    gets $s line
-    puts $line
-    gets $s line
-    puts $line
-    gets $s line
-    puts $line
 }
 
 ###################################################################3
 
 proc sendTo_mpd_Server { } {
    # global m
-    set m [Echo_Client localhost 6600]
-   # start_mpd_Client_Only_Once
+    set m [netClient localhost 6600]
     
-    #puts $m "pause\n"
     puts $m "list album group albumartist\n"
-   # puts $m "Joyful!"
-   # puts $m "Fellow!"
     while {[gets $m line] >= 0} {
         #puts $line
         guiTextInsert_mpd $line
     }
     puts "finished."
-    #gets $m line
-    #puts $line
-    #gets $m line
-    #puts $line
+
 
 }
 
 proc sendTo_mpd_Server2 { cmd } {
-    set m [Echo_Client localhost 6600]
+    set m [netClient localhost 6600]
 
     puts $m "$cmd\n"
 
