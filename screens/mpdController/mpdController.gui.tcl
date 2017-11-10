@@ -337,6 +337,7 @@ proc start_prism_server { port } {
 ##########################2222222222222222222222222
         proc prism_Accept { sock addr port } {
             fconfigure $sock -buffering line
+            #fconfigure $sock -encoding utf-8
             #puts $sock "punk"
             
             global prismClients
@@ -364,6 +365,7 @@ proc start_prism_server { port } {
         proc mpd_client {host port} {
             set sock [socket $host $port]
             fconfigure $sock -buffering line
+            #fconfigure $sock -encoding utf-8
             return $sock
         }
 ################333333333333333333333333333        
@@ -377,9 +379,17 @@ proc start_prism_server { port } {
         }
 ###############5555555555555555555555555
         proc mpd_receive {sock i} {
+            global prismClients
+            global mpdClients
             if {[eof $sock] || [catch {gets $sock line}]} {
                 puts "mpd_receive. Closing $sock"
                 close $sock
+                if { [catch {close $prismClients($i)}]} {
+                    
+                } else {
+                    unset prismClients($i)
+                }
+                unset mpdClients($i)
             } else {
                 #puts "mpd_receive '$line'"
                 
@@ -396,13 +406,21 @@ proc start_prism_server { port } {
             if {[info exists mpdClients($i) ]} {
                 #puts "mpdSock exists"
             } else {
-                mpd_connect
+                mpd_connect $i
                 
             }
             if { [catch { puts $mpdClients($i) $cmd } ]} {
                 puts "mpd_write$i failed, closing connection"
-                #close $mpdSock
-                #unset mpdSock
+                #close $mpdClients($i)
+                #unset mpdClients($i)
+
+                #mpd_connect $i
+                #if { [catch { puts $mpdClients($i) $cmd } ]} {
+
+                #} else {
+                    #puts "2mpd$i write '$cmd'"
+                #}
+                
             } else {
                 puts "mpd$i write '$cmd'"
                 
@@ -434,13 +452,15 @@ proc start_prism_server { port } {
 
             #set filterItem "OK"
             #if { [regexp -nocase "OK MPD" $cmd matched] } {
-                
+                #append cmd "\0"
             #} elseif { [regexp -nocase $filterItem $cmd matched] } {
-                #append okqueue "$cmd\n"
-                #set cmd $okqueue
+                #append cmd "\0"
+                ##append okqueue "$cmd"
+                ##set cmd $okqueue
             #} else {
-                #append okqueue "$cmd\n"
-                #return
+                #append cmd "\0"
+               ## append okqueue "$cmd\n"
+               ## return
             #}
             
             
@@ -453,12 +473,14 @@ proc start_prism_server { port } {
             }
             
             #puts $prismClients($i)
+            append cmd "\0"
             if { [catch { puts $prismClients($i) $cmd } ]} {
                 #close $prismSock
                 #unset prismSock
                 puts "prism$i write failed"
             } else {
                 puts "prism$i write '$cmd'"
+                #set okqueue ""
             }
                 
 
