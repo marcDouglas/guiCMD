@@ -1,5 +1,5 @@
 [Unit]
-Description=mpdSync.  copy this file "sudo cp mpdSync.service /usr/lib/systemd/system/." then "sudo systemctl start mpdSync;sudo systemctl enable mpdSync" 
+Description=mpdSync.  /usr/lib/systemd/system/" 
 
 [Service]
 Type=simple

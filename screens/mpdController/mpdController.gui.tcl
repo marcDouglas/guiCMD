@@ -45,7 +45,10 @@ proc mpdController_initialize { } {
     grid .f.mpdController.localhost.h4 -column 2 -row 0
     # grid .f.mpdController.localhost.m0 -column 3 -row 0
     grid .f.mpdController.localhost.t0 -column 0 -row 5 -columnspan 3
-    start_mpdSync_Server
+    #start_mpdSync_Server
+    findServersAvahi
+    start_prism_Server 6601
+
 }
 proc guiTextInsert_mpd {cmdOutput} {
     #.f.syncDrives.localhost.t0 delete 1.0 end
@@ -92,11 +95,22 @@ proc findServersAvahi { } {
             set column [expr $i % 3 ] 
         }
         set row [expr $i / 3 + 2]
-        checkbutton .f.mpdController.localhost.clients$i -text $tmp -variable hostCheckButton($i)
+        checkbutton .f.mpdController.localhost.clients$i -text $tmp -variable hostCheckButton($i) -command [list changeClientStatus $i]
         grid .f.mpdController.localhost.clients$i -column $column -row $row
         incr i
     }
         
+}
+
+proc changeClientStatus { i } {
+    global hostCheckButton
+    #guiTextInsert_mpd "check $i"
+    if { $hostCheckButton($i) ==  0 } {
+        syncHostDisconnect $i
+    } else {
+        syncHostConnect $i
+    }
+
 }
 
 proc connectClients { } {
@@ -297,3 +311,129 @@ proc sendTo_mpd_Server2 { cmd } {
 
 
 }
+
+######################################################################
+
+proc start_prism_Server { port } {
+    set id [thread::create {
+        proc mpd_Client {host port} {
+            set sock [socket $host $port]
+            fconfigure $sock -buffering line
+            return $sock
+        }
+        
+        proc mpd_connect {} {
+            global mpdSock
+            puts "mpdSock connecting"
+            set mpdSock [mpd_Client localhost 6600]
+            #puts "receiving initial from mpd"
+            mpd_Server_receive $mpdSock
+            #mpd_Server_receive $mpdSock
+            #puts "done"
+            #mpd_Server_receive $mpdSock
+            fileevent $mpdSock readable [list mpd_Server_receive $mpdSock]
+        }
+        
+        proc mpd_write { cmd } {
+            global mpdSock
+            if { [llength $cmd] < 1 } {
+                puts "mpd_write, no data to write."
+                return
+            }
+            
+            
+            
+            if {[info exists mpdSock]} {
+                puts "mpdSock exists"
+            } else {
+                mpd_connect
+            }
+            if { [catch { puts $mpdSock $cmd } ]} {
+                puts "send failed, closing connection"
+                #close $mpdSock
+                #unset mpdSock
+            } else {
+                puts "mpd write::: '$cmd'"
+                
+            }
+            
+        }
+        proc mpd_Server_receive {sock} {
+            if {[eof $sock] || [catch {gets $sock line}]} {
+                puts "Closing $sock"
+                close $sock
+            } else {
+                puts "mpd receive::: $line :::"
+                prism_write $line
+            }
+        } ;#end proc prism_server reply
+        
+
+
+        proc prism_Server {port} {
+            global prismSock
+            set prism_server_state go
+            set prismSock [socket -server prism_Server_Accept $port]
+            vwait prism_server_state
+            #close $prismSock
+        }        
+        
+        proc prism_Server_Accept {sock addr port} {
+            global connectedServers
+            global prismSock
+            
+            set prismSock $sock
+            # Record the client's information
+        
+            puts "Accept $sock from $addr port $port"
+            set connectedServers(addr,$sock) [list $addr $port]
+        
+            # Ensure that each "puts" by the server
+            # results in a network transmission
+        
+            fconfigure $sock -buffering line
+            
+            
+            # Set up a callback for when the client sends data
+        
+            fileevent $sock readable [list prism_Server_receive $sock]
+            
+            #puts $sock "OK MPD 0.20.0"
+            mpd_connect
+        }
+        proc prism_Server_receive {sock} {
+        
+            # Check end of file or abnormal connection drop,
+            # then connectedServers data back to the client.
+        
+            if {[eof $sock] || [catch {gets $sock line}]} {
+                close $sock
+            } else {
+                #puts $sock $line
+                puts "prism receive:::$line :::"
+                mpd_write $line
+            }
+            
+            
+        } ;#end proc prism_server reply
+        
+        proc prism_write { msg } {
+            global prismSock
+            puts $prismSock
+
+            if { [catch { puts $prismSock $msg } ]} {
+                #close $prismSock
+                #unset prismSock
+                puts "prism write failed"
+            } else {
+                puts "prism write::: $msg :::"
+            }
+                
+
+        }  
+        prism_Server 6601
+        thread::wait
+
+    }] ;# thread::create   set pid [fork]
+} ;#end start_prism_server
+
