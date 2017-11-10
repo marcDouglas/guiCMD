@@ -324,8 +324,8 @@ proc start_prism_server { port } {
         array set prismClients []
         array set mpdClients []
         set clientCount 0
-#############################1111111111111111111111
-        proc prism_server {port} {
+        
+        proc prism_server { port } {
             global prismServerRoot
             global runPrismServer
             set runPrismServer 1
@@ -335,12 +335,18 @@ proc start_prism_server { port } {
             }
         }        
 ##########################2222222222222222222222222
-        proc prism_Accept {sock addr port } {
+        proc prism_Accept { sock addr port } {
+            fconfigure $sock -buffering line
+            #puts $sock "punk"
+            
             global prismClients
             global clientCount
             incr clientCount
             set i $clientCount
             set prismClients($i) $sock
+            
+           # puts wtf
+            #puts $sock $sock
             
             #set prismSock $sock
             # Record the client's information
@@ -391,13 +397,14 @@ proc start_prism_server { port } {
                 #puts "mpdSock exists"
             } else {
                 mpd_connect
+                
             }
             if { [catch { puts $mpdClients($i) $cmd } ]} {
-                puts "send failed, closing connection"
+                puts "mpd_write$i failed, closing connection"
                 #close $mpdSock
                 #unset mpdSock
             } else {
-                puts "mpd write '$cmd'"
+                puts "mpd$i write '$cmd'"
                 
             }
             
@@ -449,9 +456,9 @@ proc start_prism_server { port } {
             if { [catch { puts $prismClients($i) $cmd } ]} {
                 #close $prismSock
                 #unset prismSock
-                puts "prism write failed"
+                puts "prism$i write failed"
             } else {
-                puts "prism write '$cmd'"
+                puts "prism$i write '$cmd'"
             }
                 
 
