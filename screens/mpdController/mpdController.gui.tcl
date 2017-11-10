@@ -16,7 +16,8 @@ source avahi/discover.tcl
 global syncHosts
 array set syncHosts []
 array set syncClients []
-    
+global okqueue
+set okqueue ""    
     
 proc mpdController_initialize { } {
 
@@ -46,8 +47,8 @@ proc mpdController_initialize { } {
     # grid .f.mpdController.localhost.m0 -column 3 -row 0
     grid .f.mpdController.localhost.t0 -column 0 -row 5 -columnspan 3
     #start_mpdSync_Server
-    findServersAvahi
-    start_prism_Server 6601
+    #findServersAvahi
+    start_prism_server 6601
 
 }
 proc guiTextInsert_mpd {cmdOutput} {
@@ -314,126 +315,155 @@ proc sendTo_mpd_Server2 { cmd } {
 
 ######################################################################
 
-proc start_prism_Server { port } {
+proc start_prism_server { port } {
     set id [thread::create {
-        proc mpd_Client {host port} {
+##############  THREAD STARTS HERE #################
+        global prismClients
+        global mpdClients
+        global clientCount
+        array set prismClients []
+        array set mpdClients []
+        set clientCount 0
+#############################1111111111111111111111
+        proc prism_server {port} {
+            global prismServerRoot
+            global runPrismServer
+            set runPrismServer 1
+            while { $runPrismServer == 1 } {
+                set prismServerRoot [socket -server prism_Accept $port]
+                vwait runPrismServer
+            }
+        }        
+##########################2222222222222222222222222
+        proc prism_Accept {sock addr port } {
+            global prismClients
+            global clientCount
+            incr clientCount
+            set i $clientCount
+            set prismClients($i) $sock
+            
+            #set prismSock $sock
+            # Record the client's information
+        
+            puts "prism_Accept:$clientCount- $sock"
+            #set connectedServers(addr,$sock) [list $addr $port]
+                    
+           # fconfigure $prismClients($i) -buffering line
+                    
+            fileevent $prismClients($i) readable [list prism_receive $prismClients($i) $i]
+
+            mpd_connect $i
+        }
+##################44444444444444444444444444
+        proc mpd_client {host port} {
             set sock [socket $host $port]
             fconfigure $sock -buffering line
             return $sock
         }
-        
-        proc mpd_connect {} {
-            global mpdSock
-            puts "mpdSock connecting"
-            set mpdSock [mpd_Client localhost 6600]
-            #puts "receiving initial from mpd"
-            mpd_Server_receive $mpdSock
-            #mpd_Server_receive $mpdSock
-            #puts "done"
-            #mpd_Server_receive $mpdSock
-            fileevent $mpdSock readable [list mpd_Server_receive $mpdSock]
+################333333333333333333333333333        
+        proc mpd_connect { i } {
+            global mpdClients
+            set mpdClients($i) [mpd_client localhost 6600]
+            
+            #mpd_receive $mpdClients($i)  $i
+            
+            fileevent $mpdClients($i) readable [list mpd_receive $mpdClients($i) $i]
         }
-        
-        proc mpd_write { cmd } {
-            global mpdSock
+###############5555555555555555555555555
+        proc mpd_receive {sock i} {
+            if {[eof $sock] || [catch {gets $sock line}]} {
+                puts "mpd_receive. Closing $sock"
+                close $sock
+            } else {
+                #puts "mpd_receive '$line'"
+                
+                prism_write $line $i
+            }
+        } ;#end proc mpd_client reply
+###########################888888888888888888
+        proc mpd_write { cmd i } {
+            global mpdClients
             if { [llength $cmd] < 1 } {
-                puts "mpd_write, no data to write."
+                puts "mpd_write, NIL"
                 return
             }
-            
-            
-            
-            if {[info exists mpdSock]} {
-                puts "mpdSock exists"
+            if {[info exists mpdClients($i) ]} {
+                #puts "mpdSock exists"
             } else {
                 mpd_connect
             }
-            if { [catch { puts $mpdSock $cmd } ]} {
+            if { [catch { puts $mpdClients($i) $cmd } ]} {
                 puts "send failed, closing connection"
                 #close $mpdSock
                 #unset mpdSock
             } else {
-                puts "mpd write::: '$cmd'"
+                puts "mpd write '$cmd'"
                 
             }
             
         }
-        proc mpd_Server_receive {sock} {
+##################7777777777777777777777777
+        proc prism_receive { sock i } {
             if {[eof $sock] || [catch {gets $sock line}]} {
-                puts "Closing $sock"
-                close $sock
-            } else {
-                puts "mpd receive::: $line :::"
-                prism_write $line
-            }
-        } ;#end proc prism_server reply
-        
-
-
-        proc prism_Server {port} {
-            global prismSock
-            set prism_server_state go
-            set prismSock [socket -server prism_Server_Accept $port]
-            vwait prism_server_state
-            #close $prismSock
-        }        
-        
-        proc prism_Server_Accept {sock addr port} {
-            global connectedServers
-            global prismSock
-            
-            set prismSock $sock
-            # Record the client's information
-        
-            puts "Accept $sock from $addr port $port"
-            set connectedServers(addr,$sock) [list $addr $port]
-        
-            # Ensure that each "puts" by the server
-            # results in a network transmission
-        
-            fconfigure $sock -buffering line
-            
-            
-            # Set up a callback for when the client sends data
-        
-            fileevent $sock readable [list prism_Server_receive $sock]
-            
-            #puts $sock "OK MPD 0.20.0"
-            mpd_connect
-        }
-        proc prism_Server_receive {sock} {
-        
-            # Check end of file or abnormal connection drop,
-            # then connectedServers data back to the client.
-        
-            if {[eof $sock] || [catch {gets $sock line}]} {
+                puts "prism_receive. Closing $sock"
                 close $sock
             } else {
                 #puts $sock $line
-                puts "prism receive:::$line :::"
-                mpd_write $line
+                #puts "prism receive '$line'"
+                mpd_write $line $i
             }
             
             
-        } ;#end proc prism_server reply
-        
-        proc prism_write { msg } {
-            global prismSock
-            puts $prismSock
+        } ;#end proc prism_server_receive
+################  6666666666666666666666666     
+        proc prism_write { cmd i } {
+            global prismClients
+            global okqueue
+            #puts $prismClients($i)
+            if { [llength $cmd] < -1 } {
+                puts "prism_write, NIL"
+                return
+            }
 
-            if { [catch { puts $prismSock $msg } ]} {
+            #set filterItem "OK"
+            #if { [regexp -nocase "OK MPD" $cmd matched] } {
+                
+            #} elseif { [regexp -nocase $filterItem $cmd matched] } {
+                #append okqueue "$cmd\n"
+                #set cmd $okqueue
+            #} else {
+                #append okqueue "$cmd\n"
+                #return
+            #}
+            
+            
+            if {[info exists prismClients($i) ]} {
+                #puts "prism_write exists"
+            } else {
+                puts "prism_write.$i is dead, returning."
+                return
+                #no connection, we do no initiate, could clean up.
+            }
+            
+            #puts $prismClients($i)
+            if { [catch { puts $prismClients($i) $cmd } ]} {
                 #close $prismSock
                 #unset prismSock
                 puts "prism write failed"
             } else {
-                puts "prism write::: $msg :::"
+                puts "prism write '$cmd'"
             }
                 
 
-        }  
-        prism_Server 6601
+        }
+
+
+
+
+  
+        prism_server 6601
         thread::wait
 
     }] ;# thread::create   set pid [fork]
-} ;#end start_prism_server
+} ;#end start_mpd_client
 
