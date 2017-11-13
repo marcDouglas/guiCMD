@@ -445,7 +445,7 @@ proc start_prism_server { port } {
             global prismClients
             global okqueue
             #puts $prismClients($i)
-            if { [llength $cmd] < -1 } {
+            if { [llength $cmd] < 1 } {
                 puts "prism_write, NIL"
                 return
             }
