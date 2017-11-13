@@ -22,44 +22,38 @@
 #include <errno.h>
 #include <assert.h>
 #include <signal.h>
-//#define threadCount 0
-
-//int* clientThreads[0];
-int clients[0];
-int mpdClientCount=0;
-std::thread clientThreads[0];
-std::thread mpdThreads[0];
-int clientSocket[0];
-int mpdSocket[0];
-
 
 static void usage();
 static void middleServer(int argc, char *argv[]);
 static void clientServerThread(int i);
 static void mpdClientThread(int i);
+static void mpdClientThread2(int k);
 static void sigHandler(int sigID);  // Handler of SIGPIPE signal    
 
+int clients[100];
+int mpdClientCount;
+std::thread clientThreads[0];
+//std::thread mpdThreads[100];
+int clientSocket[100];
+int mpdSocket[100];
+int finished;
+const int MAX_LINE_LENGTH = 1024;
+
 int main(int argc, char *argv[]) {
+    finished = 0;
+    
     //std::thread t1(middleServer, argc, argv);
     //t1.join();
     middleServer(argc, argv);
     //mpdClientThread(0);
+    //mpdThreads[0] = std::thread(mpdClientThread, 0);
+    //mpdThreads[0].join();
     return 0;
 }
 
-static void usage() {
-    printf(
-        "A simple Internet server application.\n"
-        "It listens to the port written in command line (default 1234),\n"
-        "accepts a connection, and sends the \"Hello!\" message to a client.\n"
-        "Then it receives the answer from a client and terminates.\n\n"
-        "Usage:\n"
-        "     server [port_to_listen]\n"
-        "Default is the port 1234.\n"
-    );
-}
 
 static void middleServer(int argc, char *argv[]) {
+    
     int threadCount;
     threadCount = 0;
     
@@ -70,7 +64,6 @@ static void middleServer(int argc, char *argv[]) {
     int listenPort = 1234;
     if (argc > 1)
         listenPort = atoi(argv[1]);
-
 
     // Create a socket
     int serverReceiveSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -90,7 +83,6 @@ static void middleServer(int argc, char *argv[]) {
     if (res < 0) {
         perror("Cannot bind a socket"); exit(1);
     }
-
     // Set the "LINGER" timeout to zero, to close the listen socket
     // immediately at program termination.
     struct linger linger_opt = { 1, 0 }; // Linger active, timeout 0
@@ -107,12 +99,15 @@ static void middleServer(int argc, char *argv[]) {
     struct sockaddr_in peeraddr;
     socklen_t peeraddr_len;
     //printf("middleServer 2");
+    
+
     while (true) 
     {
        // int mpdSocket;
+      
         clientSocket[threadCount] = accept(serverReceiveSocket, (struct sockaddr*) &peeraddr, &peeraddr_len);
         if (clientSocket[threadCount] < 0) {
-            perror("Cannot accept"); exit(1);
+            perror("Cannot accept clientSocket"); exit(1);
         }
        // res = close(serverReceiveSocket);    // Close the listen socket
         printf(
@@ -123,13 +118,13 @@ static void middleServer(int argc, char *argv[]) {
             ntohl(peeraddr.sin_addr.s_addr) & 0xff,         // Low byte of addr
             ntohs(peeraddr.sin_port)
         );           
-        write(clientSocket[threadCount], "Hello!\r\n", 8);
-        //printf("middleServer pre-thread\n");
+        //write(clientSocket[threadCount], "Hello!\r\n", 8);
         clientThreads[threadCount] = std::thread(clientServerThread, threadCount);
-        //printf("clientThreads launched\n");
         //mpdThreads[threadCount] = std::thread(mpdClientThread, threadCount);
-        mpdClientThread(threadCount);
-        //printf("mpdThreads launched\n");       
+        //sleep(1);
+         //clientThreads[1] = std::thread(mpdClientThread2, 1);
+        //mpdThreads[0].join();
+        //mpdClientThread(threadCount);
         threadCount++;
 
     
@@ -138,34 +133,30 @@ static void middleServer(int argc, char *argv[]) {
 }
 
 static void clientServerThread(int i) {
+    //sleep(3);
   char buffer[1024];
-  int res;
-   // int mpdSocket;
+  int results;
+   std::thread mpdThread;
    // mpdClientThread(clientSocket, mpdSocket);
-   // mpdThreads[mpdClientCount] = std::thread(mpdClientThread,clientSocket,mpdSocket);
+    mpdThread = std::thread(mpdClientThread,i);
   //  mpdClientCount++;
-    //printf("connecting clientServerThread");
+    printf("connecting clientServerThread\n");
   while (true) 
   {
-    res = read(clientSocket[i], buffer, 1023);
-    if (res < 0) {
+    results = read(clientSocket[i], buffer, 1023);
+    if (results < 0) {
         perror("Read error"); exit(1);
     }
-    buffer[res] = 0;
+    buffer[results] = 0;
     printf("%s", buffer);
     //write(clientSocket, "Hello!\r\n", 8);
   }  
 }
 
-// Socket
-const int MAX_LINE_LENGTH = 65534;
-
-int finished = 0;            // Finish the program
-
 
 static void mpdClientThread(int i) {
    // int mpdSocket;  // Network socket
-    //printf("connecting mpd");
+    printf("connecting mpd\n");
 
     char readBuffer[1024];  // Read buffer
 
@@ -192,9 +183,9 @@ static void mpdClientThread(int i) {
     }
 
     // Fill in the address of server
-    struct sockaddr_in peeraddr;
-    int peeraddr_len;
-    memset(&peeraddr, 0, sizeof(peeraddr));
+    struct sockaddr_in peeraddr2;
+    //int peeraddr2_len;
+    memset(&peeraddr2, 0, sizeof(peeraddr2));
     char* peerHost = (char*)"localhost";
 
 
@@ -203,11 +194,11 @@ static void mpdClientThread(int i) {
     if (host == NULL) {
         perror("Cannot define host address"); exit(1);
     }
-    peeraddr.sin_family = AF_INET;
+    peeraddr2.sin_family = AF_INET;
     short peerPort = 6600;
 
 
-    peeraddr.sin_port = htons(peerPort);
+    peeraddr2.sin_port = htons(peerPort);
 
     // Print a resolved address of server (the first IP of the host)
     printf(
@@ -220,12 +211,12 @@ static void mpdClientThread(int i) {
     );
 
     // Write resolved IP address of a server to the address structure
-    memmove(&(peeraddr.sin_addr.s_addr), host->h_addr_list[0], 4);
+    memmove(&(peeraddr2.sin_addr.s_addr), host->h_addr_list[0], 4);
 
     // Connect to a remote server
-    int res = connect(mpdSocket[i], (struct sockaddr*) &peeraddr, sizeof(peeraddr));
+    int res = connect(mpdSocket[i], (struct sockaddr*) &peeraddr2, sizeof(peeraddr2));
     if (res < 0) {
-        perror("Cannot connect"); exit(1);
+        perror("Cannot connect mpd."); exit(1);
     }
     printf("Connected. Type a message and press \"Enter\".\n");
 
@@ -327,7 +318,28 @@ static void mpdClientThread(int i) {
    // return 0;
 }
 
+static void mpdClientThread2(int k) {
+    while (true) {
+        sleep(3);
+        printf("mpdClientThread2.\n");
+   }
+    
+}
+
 static void sigHandler(int sigID) {
     printf("The SIGPIPE signal (connection is broken).\n");
     finished = 1;
+}
+
+
+static void usage() {
+    printf(
+        "A simple Internet server application.\n"
+        "It listens to the port written in command line (default 1234),\n"
+        "accepts a connection, and sends the \"Hello!\" message to a client.\n"
+        "Then it receives the answer from a client and terminates.\n\n"
+        "Usage:\n"
+        "     server [port_to_listen]\n"
+        "Default is the port 1234.\n"
+    );
 }
