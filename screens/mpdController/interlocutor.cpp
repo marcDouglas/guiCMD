@@ -10,6 +10,8 @@
 // Default is the port 1234.
 //
 #include <thread>
+#include <mutex> 
+#include <condition_variable>
 
 #include <stdio.h>
 #include <string.h>
@@ -27,17 +29,26 @@ static void usage();
 static void middleServer(int argc, char *argv[]);
 static void clientServerThread(int i);
 static void mpdClientThread(int i);
-static void mpdClientThread2(int k);
 static void sigHandler(int sigID);  // Handler of SIGPIPE signal    
 
 int clients[100];
 int mpdClientCount;
 std::thread clientThreads[0];
+std::condition_variable mpdIsOnlineCV[100];
+std::condition_variable clientIsOnlineCV[100];
+bool mpdIsOnline_bool[100];
+bool clientIsOnline_bool[100];
+
 //std::thread mpdThreads[100];
 int clientSocket[100];
 int mpdSocket[100];
+
 int finished;
-const int MAX_LINE_LENGTH = 1024;
+const int MAX_LINE_LENGTH = 65534;
+std::mutex clientLock[100];
+std::mutex mpdLock[100];
+
+std::condition_variable cv; // condition variable for critical section  
 
 int main(int argc, char *argv[]) {
     finished = 0;
@@ -55,13 +66,14 @@ int main(int argc, char *argv[]) {
 static void middleServer(int argc, char *argv[]) {
     
     int threadCount;
+    int connected;
     threadCount = 0;
     
     if (argc > 1 && *(argv[1]) == '-') {
         usage(); exit(1);
     }
 
-    int listenPort = 1234;
+    int listenPort = 6601;
     if (argc > 1)
         listenPort = atoi(argv[1]);
 
@@ -103,15 +115,20 @@ static void middleServer(int argc, char *argv[]) {
 
     while (true) 
     {
-       // int mpdSocket;
-      
-        clientSocket[threadCount] = accept(serverReceiveSocket, (struct sockaddr*) &peeraddr, &peeraddr_len);
-        if (clientSocket[threadCount] < 0) {
-            perror("Cannot accept clientSocket"); exit(1);
-        }
+        connected = false;
+        do
+        {
+            clientSocket[threadCount] = accept(serverReceiveSocket, (struct sockaddr*) &peeraddr, &peeraddr_len);
+            if (clientSocket[threadCount] < 0) {
+                perror("Cannot accept clientSocket");
+                sleep (1);
+            } else {
+                connected = true;
+            }
+        } while (!connected);
        // res = close(serverReceiveSocket);    // Close the listen socket
         printf(
-            "Connection from IP %d.%d.%d.%d, port %d\n",
+            "clientServer connected: %d.%d.%d.%d, port %d\n",
             (ntohl(peeraddr.sin_addr.s_addr) >> 24) & 0xff, // High byte of address
             (ntohl(peeraddr.sin_addr.s_addr) >> 16) & 0xff, // . . .
             (ntohl(peeraddr.sin_addr.s_addr) >> 8) & 0xff,  // . . .
@@ -134,13 +151,17 @@ static void middleServer(int argc, char *argv[]) {
 
 static void clientServerThread(int i) {
     //sleep(3);
-  char buffer[1024];
-  int results;
-   std::thread mpdThread;
-   // mpdClientThread(clientSocket, mpdSocket);
+    char buffer[MAX_LINE_LENGTH];
+    int results;
+    int bufferLen;
+    mpdIsOnline_bool[i]=false;
+    clientIsOnline_bool[i]=false;
+    
+    std::thread mpdThread;
+    // mpdClientThread(clientSocket, mpdSocket);
     mpdThread = std::thread(mpdClientThread,i);
-  //  mpdClientCount++;
-    printf("connecting clientServerThread\n");
+    // mpdClientCount++;
+    //printf("connecting clientServerThread\n");
   while (true) 
   {
     results = read(clientSocket[i], buffer, 1023);
@@ -148,19 +169,48 @@ static void clientServerThread(int i) {
         perror("Read error"); exit(1);
     }
     buffer[results] = 0;
-    printf("%s", buffer);
+    //printf("%s", buffer);
+
     //write(clientSocket, "Hello!\r\n", 8);
+    clientIsOnline_bool[i]=true;
+    clientIsOnlineCV[i].notify_one();
+    std::unique_lock<std::mutex> locker(mpdLock[i]);
+    while(!mpdIsOnline_bool[i]) // used to avoid spurious wakeups 
+    {
+        mpdIsOnlineCV[i].wait(locker);
+    }
+    
+    bufferLen = strlen(buffer);
+    if (!finished && bufferLen > 0) {
+        results = write(mpdSocket[i], buffer, bufferLen);
+        if (results < 0) {
+            if (errno != EAGAIN) {
+                perror("Write error");
+                break;              // Write error
+            } else {
+                perror("Incompleted send");
+            }
+        } else if (results == 0) {
+            printf("Connection closed");
+            break;
+        } else if (results > 0) {
+            bufferLen=0;
+            //writePos += results;
+            //writeBufferLen -= results;
+        }
+    }
+    mpdIsOnline_bool[i]=false;
   }  
 }
 
 
 static void mpdClientThread(int i) {
    // int mpdSocket;  // Network socket
-    printf("connecting mpd\n");
+    printf("connecting to mpd.\n");
 
-    char readBuffer[1024];  // Read buffer
+    char readBuffer[MAX_LINE_LENGTH];  // Read buffer
 
-    char writeBuffer[1024]; // Write buffer
+    char writeBuffer[MAX_LINE_LENGTH]; // Write buffer
     char *writePos = writeBuffer;          // current position
     int writeBufferLen = 0;                // write buffer length
 
@@ -218,7 +268,7 @@ static void mpdClientThread(int i) {
     if (res < 0) {
         perror("Cannot connect mpd."); exit(1);
     }
-    printf("Connected. Type a message and press \"Enter\".\n");
+    //printf("Connected. Type a message and press \"Enter\".\n");
 
     // Define socket as non-blocking
     // res = fcntl(mpdSocket[i], F_SETFL, O_NONBLOCK);
@@ -278,24 +328,17 @@ static void mpdClientThread(int i) {
 
         if (received > 0) {
             readBuffer[received] = 0;
-            printf("%s", readBuffer);
+            //printf("%s", readBuffer);
         }
+     
+        mpdIsOnline_bool[i]=true;
+        mpdIsOnlineCV[i].notify_one();
 
-        if (finished)
-            break;
 
-        if (writeBufferLen == 0) {
-           // printf("Input a line (Ctrl+D for end):\n");
-            if (fgets(writeBuffer, MAX_LINE_LENGTH, stdin) != NULL) {
-                writeBufferLen = strlen(writeBuffer);
-                writePos = writeBuffer;
-            } else {
-                break;  // Break on Ctrl+D
-            }
-        }
-
+        
+        writeBufferLen = strlen(readBuffer);
         if (!finished && writeBufferLen > 0) {
-            res = write(mpdSocket[i], writePos, writeBufferLen);
+            res = write(clientSocket[i], readBuffer, writeBufferLen);
             if (res < 0) {
                 if (errno != EAGAIN) {
                     perror("Write error");
@@ -307,10 +350,50 @@ static void mpdClientThread(int i) {
                 printf("Connection closed");
                 break;
             } else if (res > 0) {
-                writePos += res;
-                writeBufferLen -= res;
+                //writePos += results;
+                //writeBufferLen -= results;
+                writeBufferLen=0;
             }
         }
+        
+        std::unique_lock<std::mutex> locker(clientLock[i]);
+        while(!clientIsOnline_bool[i]) // used to avoid spurious wakeups 
+        {
+            clientIsOnlineCV[i].wait(locker);
+        }
+        clientIsOnline_bool[i]=false;
+        //if (finished)
+            //break;
+
+        //if (writeBufferLen == 0) {
+           //// printf("Input a line (Ctrl+D for end):\n");
+            //if (fgets(writeBuffer, MAX_LINE_LENGTH, stdin) != NULL) {
+                //writeBufferLen = strlen(writeBuffer);
+                //writePos = writeBuffer;
+            //} else {
+                //break;  // Break on Ctrl+D
+            //}
+        //}       
+        
+         
+        //if (!finished && writeBufferLen > 0) {
+            //res = write(clientSocket[i], writePos, writeBufferLen);
+            //if (res < 0) {
+                //if (errno != EAGAIN) {
+                    //perror("Write error");
+                    //break;              // Write error
+                //} else {
+                    //perror("Incompleted send");
+                //}
+            //} else if (res == 0) {
+                //printf("Connection closed");
+                //break;
+            //} else if (res > 0) {
+                //writePos += res;
+                //writeBufferLen -= res;
+            //}
+        //}
+        //cv.notify_all();
     } // end while
 
     shutdown(mpdSocket[i], 2);
@@ -318,13 +401,6 @@ static void mpdClientThread(int i) {
    // return 0;
 }
 
-static void mpdClientThread2(int k) {
-    while (true) {
-        sleep(3);
-        printf("mpdClientThread2.\n");
-   }
-    
-}
 
 static void sigHandler(int sigID) {
     printf("The SIGPIPE signal (connection is broken).\n");
