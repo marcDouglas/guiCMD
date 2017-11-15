@@ -210,8 +210,8 @@ static void mpdClientThread(int i) {
 
     char readBuffer[MAX_LINE_LENGTH];  // Read buffer
 
-    char writeBuffer[MAX_LINE_LENGTH]; // Write buffer
-    char *writePos = writeBuffer;          // current position
+    //char writeBuffer[MAX_LINE_LENGTH]; // Write buffer
+    //char *writePos = writeBuffer;          // current position
     int writeBufferLen = 0;                // write buffer length
 
     
@@ -362,38 +362,7 @@ static void mpdClientThread(int i) {
             clientIsOnlineCV[i].wait(locker);
         }
         clientIsOnline_bool[i]=false;
-        //if (finished)
-            //break;
 
-        //if (writeBufferLen == 0) {
-           //// printf("Input a line (Ctrl+D for end):\n");
-            //if (fgets(writeBuffer, MAX_LINE_LENGTH, stdin) != NULL) {
-                //writeBufferLen = strlen(writeBuffer);
-                //writePos = writeBuffer;
-            //} else {
-                //break;  // Break on Ctrl+D
-            //}
-        //}       
-        
-         
-        //if (!finished && writeBufferLen > 0) {
-            //res = write(clientSocket[i], writePos, writeBufferLen);
-            //if (res < 0) {
-                //if (errno != EAGAIN) {
-                    //perror("Write error");
-                    //break;              // Write error
-                //} else {
-                    //perror("Incompleted send");
-                //}
-            //} else if (res == 0) {
-                //printf("Connection closed");
-                //break;
-            //} else if (res > 0) {
-                //writePos += res;
-                //writeBufferLen -= res;
-            //}
-        //}
-        //cv.notify_all();
     } // end while
 
     shutdown(mpdSocket[i], 2);

@@ -22,8 +22,8 @@ proc chooseWhichBack {} {
 
     switch $host {
         vishnu {
-            set scriptLocation "bin/syncDrive.vishnu.sh"
-            set umountScriptLocation "bin/umount.vishnu.sh"
+            set scriptLocation "/home/marc/bin/guicmd/screens/syncDrives/bin/syncDrive.vishnu.sh"
+            set umountScriptLocation "/home/marc/bin/guicmd/screens/syncDrives/bin/umount.vishnu.sh"
             if { [ file isdirectory "/mnt/wishnu/backups/vishnu_7.7.17" ] == 1 } {
                 .f.syncDrives.localhost.circle itemconfig t2 -extent 0
                 statusTextReplace "Vishnu is ready to backup to Wishnu."
@@ -33,8 +33,8 @@ proc chooseWhichBack {} {
             }
         }
         flower {
-            set scriptLocation "bin/syncDrive.flower.sh"
-            set umountScriptLocation "bin/umount.flower.sh"
+            set scriptLocation "/home/shawn/bin/guicmd/screens/syncDrives/bin/syncDrive.flower.sh"
+            set umountScriptLocation "/home/shawna/bin/guicmd/screens/syncDrives/bin/umount.flower.sh"
             if { [ file isdirectory "/run/media/shawna/BumbleBee/backups/flower.11.2.17" ] == 1 } {
                 .f.syncDrives.localhost.circle itemconfig t2 -extent 0
                 statusTextReplace "Flower is ready to backup to BumbleBee."
@@ -44,8 +44,8 @@ proc chooseWhichBack {} {
             }               
         } 
         vader {
-           set scriptLocation "bin/syncDrive.vader.sh"
-           set umountScriptLocation "bin/umount.vader.sh"
+           set scriptLocation "/home/marc/bin/guicmd/screens/syncDrives/bin/syncDrive.vader.sh"
+           set umountScriptLocation "/home/marc/bin/guicmd/screens/syncDrives/bin/umount.vader.sh"
            if { [ file isdirectory "/run/media/marc/wishnu/backups/vader.ssh.bkup" ] == 1 } {
                 .f.syncDrives.localhost.circle itemconfig t2 -extent 0
                 statusTextReplace "Vader is ready to backup to Wishnu."
@@ -55,8 +55,8 @@ proc chooseWhichBack {} {
             }
         }
         tiger {
-           set scriptLocation "bin/syncDrive.tiger.sh"
-           set umountScriptLocation "bin/umount.tiger.sh"
+           set scriptLocation "/home/cam/bin/guicmd/screens/syncDrives/bin/syncDrive.tiger.sh"
+           set umountScriptLocation "/home/cam/bin/guicmd/screens/syncDrives/bin/umount.tiger.sh"
            if { [ file isdirectory "/run/pidrive/marc/piDrive/backups/tiger.bkup" ] == 1 } {
                 .f.syncDrives.localhost.circle itemconfig t2 -extent 0
                 statusTextReplace "Tiger is ready to backup to Wishnu."
