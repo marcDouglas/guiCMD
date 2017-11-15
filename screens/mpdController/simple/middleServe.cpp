@@ -63,7 +63,7 @@ try
           do {          
             clientServer_socket[i] >> data;
           
-            std::cout << "client:" << data << "\n";
+            std::cout << "client:" << data;
             mpd_socket << data;
             
             substring = data.substr(0, 12);
@@ -71,7 +71,8 @@ try
             if (substring == "command_list") {
                 if (!isMore) {
                 std::cout << "command_list: isMore\n";
-                isMore = true;
+                if (data.length() == MAXRECV) {
+                isMore = true; }
                 }else {
                     std::cout << "command_list: end\n";
                     isMore = false;
