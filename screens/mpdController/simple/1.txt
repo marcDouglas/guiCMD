@@ -1,0 +1,1954 @@
+running....
+starting server.
+Client connected.
+starting server.
+mpd-data
+OK MPD 0.20.0
+mpd:14
+Client connected.
+starting server.
+mpd-data
+OK MPD 0.20.0
+mpd:14
+client[1]:channels
+mpd-data
+OK
+mpd:3
+client[1]:idle
+client[0]:replay_gain_mode track
+mpd-data
+OK
+mpd:3
+mpd-data
+changed: options
+OK
+mpd:20
+client[0]:status
+mpd-data
+volume: 75
+repeat: 0
+random: 0
+single: 0
+consume: 0
+playlist: 2
+playlistlength: 14
+mixrampdb: 0.000000
+state: play
+song: 6
+songid: 7
+time: 25:310
+elapsed: 24.740
+bitrate: 320
+duration: 310.022
+audio: 44100:24:2
+nextsong: 7
+nextsongid: 8
+OK
+mpd:240
+client[0]:playlistinfo
+mpd-data
+file: Aerosmith/Nine Lives/01 Nine Lives.mp3
+Last-Modified: 2013-07-09T07:44:53Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Nine Lives
+Album: Nine Lives
+Track: 1
+Date: 1997
+Genre: Rock
+Time: 273
+duration: 273.469
+Pos: 0
+Id: 1
+file: Aerosmith/Nine Lives/02 Falling In Love (Is Hard On The K.mp3
+Last-Modified: 2013-07-09T09:09:12Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Falling In Love (Is Hard On The Knees)
+Album: Nine Lives
+Track: 2
+Date: 1997
+Genre: Rock
+Time: 191
+duration: 191.457
+Pos: 1
+Id: 2
+file: Aerosmith/Nine Lives/03 Hole In My Soul.mp3
+Last-Modified: 2013-07-09T06:54:13Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Hole In My Soul
+Album: Nine Lives
+Track: 3
+Date: 1997
+Genre: Rock
+Time: 353
+duration: 352.559
+Pos: 2
+Id: 3
+file: Aerosmith/Nine Lives/04 Taste Of India.mp3
+Last-Modified: 2013-07-09T06:38:13Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Taste Of India
+Album: Nine Lives
+Track: 4
+Date: 1997
+Genre: Rock
+Time: 341
+duration: 340.965
+Pos: 3
+Id: 4
+file: Aerosmith/Nine Lives/05 Full Circle.mp3
+Last-Modified: 2013-07-09T08:00:05Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Full Circle
+Album: Nine Lives
+Track: 5
+Date: 1997
+Genre: Rock
+Time: 288
+duration: 287.574
+Pos: 4
+Id: 5
+file: Aerosmith/Nine Lives/06 Something's Gotta Give.mp3
+Last-Modified: 2013-07-09T09:04:54Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Something's Gotta Give
+Album: Nine Lives
+Track: 6
+Date: 1997
+Genre: Rock
+Time: 203
+duration: 202.855
+Pos: 5
+Id: 6
+file: Aerosmith/Nine Lives/07 Ain't That A Bitch.mp3
+Last-Modified: 2013-07-09T07:13:08Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Ain't That A Bitch
+Album: Nine Lives
+Track: 7
+Date: 1997
+Genre: Rock
+Time: 310
+duration: 310.022
+Pos: 6
+Id: 7
+file: Aerosmith/Nine Lives/08 The Farm.mp3
+Last-Modified: 2013-07-09T07:21:19Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: The Farm
+Album: Nine Lives
+Track: 8
+Date: 1997
+Genre: Rock
+Time: 251
+duration: 251.240
+Pos: 7
+Id: 8
+file: Aerosmith/Nine Lives/09 Crash.mp3
+Last-Modified: 2013-07-09T09:34:21Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Crash
+Album: Nine Lives
+Track: 9
+Date: 1997
+Genre: Rock
+Time: 251
+duration: 251.423
+Pos: 8
+Id: 9
+file: Aerosmith/Nine Lives/10 Kiss Your Past Good-Bye.mp3
+Last-Modified: 2013-07-09T07:21:38Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Kiss Your Past Good-Bye
+Album: Nine Lives
+Track: 10
+Date: 1997
+Genre: Rock
+Time: 259
+duration: 259.355
+Pos: 9
+Id: 10
+file: Aerosmith/Nine Lives/11 Pink.mp3
+Last-Modified: 2013-07-09T08:31:53Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Pink
+Album: Nine Lives
+Track: 11
+Date: 1997
+Genre: Rock
+Time: 219
+duration: 218.829
+Pos: 10
+Id: 11
+file: Aerosmith/Nine Lives/12 Falling Off.mp3
+Last-Modified: 2013-07-09T08:52:37Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Falling Off
+Album: Nine Lives
+Track: 12
+Date: 1997
+Genre: Rock
+Time: 168
+duration: 167.882
+Pos: 11
+Id: 12
+file: Aerosmith/Nine Lives/13 Attitude Adjustment.mp3
+Last-Modified: 2013-07-09T06:30:10Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Attitude Adjustment
+Album: Nine Lives
+Track: 13
+Date: 1997
+Genre: Rock
+Time: 210
+duration: 210.250
+Pos: 12
+Id: 13
+file: Aerosmith/Nine Lives/14 Fallen Angels.mp3
+Last-Modified: 2013-07-09T07:59:34Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Fallen Angels
+Album: Nine Lives
+Track: 14
+Date: 1997
+Genre: Rock
+Time: 479
+duration: 479.156
+Pos: 13
+Id: 14
+OK
+mpd:3388
+client[0]:status
+mpd-data
+volume: 75
+repeat: 0
+random: 0
+single: 0
+consume: 0
+playlist: 2
+playlistlength: 14
+mixrampdb: 0.000000
+state: play
+song: 6
+songid: 7
+time: 25:310
+elapsed: 24.740
+bitrate: 320
+duration: 310.022
+audio: 44100:24:2
+nextsong: 7
+nextsongid: 8
+OK
+mpd:240
+client[0]:stats
+mpd-data
+uptime: 13998
+playtime: 4389
+artists: 830
+albums: 916
+songs: 6322
+db_playtime: 2360997
+db_update: 1508614634
+OK
+mpd:112
+client[0]:urlhandlers
+mpd-data
+handler: http://
+handler: https://
+handler: mms://
+handler: mmsh://
+handler: mmst://
+handler: mmsu://
+handler: gopher://
+handler: rtp://
+handler: rtsp://
+handler: rtmp://
+handler: rtmpt://
+handler: rtmps://
+handler: smb://
+handler: nfs://
+handler: cdda://
+handler: alsa://
+OK
+mpd:276
+client[0]:tagtypes
+mpd-data
+tagtype: Artist
+tagtype: ArtistSort
+tagtype: Album
+tagtype: AlbumSort
+tagtype: AlbumArtist
+tagtype: AlbumArtistSort
+tagtype: Title
+tagtype: Track
+tagtype: Name
+tagtype: Genre
+tagtype: Date
+tagtype: Composer
+tagtype: Performer
+tagtype: Disc
+tagtype: MUSICBRAINZ_ARTISTID
+tagtype: MUSICBRAINZ_ALBUMID
+tagtype: MUSICBRAINZ_ALBUMARTISTID
+tagtype: MUSICBRAINZ_TRACKID
+tagtype: MUSICBRAINZ_RELEASETRACKID
+OK
+mpd:402
+client[0]:commands
+mpd-data
+command: add
+command: addid
+command: addtagid
+command: channels
+command: clear
+command: clearerror
+command: cleartagid
+command: close
+command: commands
+command: config
+command: consume
+command: count
+command: crossfade
+command: currentsong
+command: decoders
+command: delete
+command: deleteid
+command: disableoutput
+command: enableoutput
+command: find
+command: findadd
+command: idle
+command: kill
+command: list
+command: listall
+command: listallinfo
+command: listfiles
+command: listmounts
+command: listplaylist
+command: listplaylistinfo
+command: listplaylists
+command: load
+command: lsinfo
+command: mixrampdb
+command: mixrampdelay
+command: mount
+command: move
+command: moveid
+command: next
+command: notcommands
+command: outputs
+command: password
+command: pause
+command: ping
+command: play
+command: playid
+command: playlist
+command: playlistadd
+command: playlistclear
+command: playlistdelete
+command: playlistfind
+command: playlistid
+command: playlistinfo
+command: playlistmove
+command: playlistsearch
+command: plchanges
+command: plchangesposid
+command: previous
+command: prio
+command: prioid
+command: random
+command: rangeid
+command: readcomments
+command: readmessages
+command: rename
+command: repeat
+command: replay_gain_mode
+command: replay_gain_status
+command: rescan
+command: rm
+command: save
+command: search
+command: searchadd
+command: searchaddpl
+command: seek
+command: seekcur
+command: seekid
+command: sendmessage
+command: setvol
+command: shuffle
+command: single
+command: stats
+command: status
+command: stop
+command: subscribe
+command: swap
+command: swapid
+command: tagtypes
+command: toggleoutput
+command: unmount
+command: unsubscribe
+command: update
+command: urlhandlers
+command: volume
+OK
+mpd:1696
+client[0]:playlistinfo
+mpd-data
+file: Aerosmith/Nine Lives/01 Nine Lives.mp3
+Last-Modified: 2013-07-09T07:44:53Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Nine Lives
+Album: Nine Lives
+Track: 1
+Date: 1997
+Genre: Rock
+Time: 273
+duration: 273.469
+Pos: 0
+Id: 1
+file: Aerosmith/Nine Lives/02 Falling In Love (Is Hard On The K.mp3
+Last-Modified: 2013-07-09T09:09:12Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Falling In Love (Is Hard On The Knees)
+Album: Nine Lives
+Track: 2
+Date: 1997
+Genre: Rock
+Time: 191
+duration: 191.457
+Pos: 1
+Id: 2
+file: Aerosmith/Nine Lives/03 Hole In My Soul.mp3
+Last-Modified: 2013-07-09T06:54:13Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Hole In My Soul
+Album: Nine Lives
+Track: 3
+Date: 1997
+Genre: Rock
+Time: 353
+duration: 352.559
+Pos: 2
+Id: 3
+file: Aerosmith/Nine Lives/04 Taste Of India.mp3
+Last-Modified: 2013-07-09T06:38:13Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Taste Of India
+Album: Nine Lives
+Track: 4
+Date: 1997
+Genre: Rock
+Time: 341
+duration: 340.965
+Pos: 3
+Id: 4
+file: Aerosmith/Nine Lives/05 Full Circle.mp3
+Last-Modified: 2013-07-09T08:00:05Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Full Circle
+Album: Nine Lives
+Track: 5
+Date: 1997
+Genre: Rock
+Time: 288
+duration: 287.574
+Pos: 4
+Id: 5
+file: Aerosmith/Nine Lives/06 Something's Gotta Give.mp3
+Last-Modified: 2013-07-09T09:04:54Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Something's Gotta Give
+Album: Nine Lives
+Track: 6
+Date: 1997
+Genre: Rock
+Time: 203
+duration: 202.855
+Pos: 5
+Id: 6
+file: Aerosmith/Nine Lives/07 Ain't That A Bitch.mp3
+Last-Modified: 2013-07-09T07:13:08Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Ain't That A Bitch
+Album: Nine Lives
+Track: 7
+Date: 1997
+Genre: Rock
+Time: 310
+duration: 310.022
+Pos: 6
+Id: 7
+file: Aerosmith/Nine Lives/08 The Farm.mp3
+Last-Modified: 2013-07-09T07:21:19Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: The Farm
+Album: Nine Lives
+Track: 8
+Date: 1997
+Genre: Rock
+Time: 251
+duration: 251.240
+Pos: 7
+Id: 8
+file: Aerosmith/Nine Lives/09 Crash.mp3
+Last-Modified: 2013-07-09T09:34:21Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Crash
+Album: Nine Lives
+Track: 9
+Date: 1997
+Genre: Rock
+Time: 251
+duration: 251.423
+Pos: 8
+Id: 9
+file: Aerosmith/Nine Lives/10 Kiss Your Past Good-Bye.mp3
+Last-Modified: 2013-07-09T07:21:38Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Kiss Your Past Good-Bye
+Album: Nine Lives
+Track: 10
+Date: 1997
+Genre: Rock
+Time: 259
+duration: 259.355
+Pos: 9
+Id: 10
+file: Aerosmith/Nine Lives/11 Pink.mp3
+Last-Modified: 2013-07-09T08:31:53Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Pink
+Album: Nine Lives
+Track: 11
+Date: 1997
+Genre: Rock
+Time: 219
+duration: 218.829
+Pos: 10
+Id: 11
+file: Aerosmith/Nine Lives/12 Falling Off.mp3
+Last-Modified: 2013-07-09T08:52:37Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Falling Off
+Album: Nine Lives
+Track: 12
+Date: 1997
+Genre: Rock
+Time: 168
+duration: 167.882
+Pos: 11
+Id: 12
+file: Aerosmith/Nine Lives/13 Attitude Adjustment.mp3
+Last-Modified: 2013-07-09T06:30:10Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Attitude Adjustment
+Album: Nine Lives
+Track: 13
+Date: 1997
+Genre: Rock
+Time: 210
+duration: 210.250
+Pos: 12
+Id: 13
+file: Aerosmith/Nine Lives/14 Fallen Angels.mp3
+Last-Modified: 2013-07-09T07:59:34Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Fallen Angels
+Album: Nine Lives
+Track: 14
+Date: 1997
+Genre: Rock
+Time: 479
+duration: 479.156
+Pos: 13
+Id: 14
+OK
+mpd:3388
+client[0]:status
+mpd-data
+volume: 75
+repeat: 0
+random: 0
+single: 0
+consume: 0
+playlist: 2
+playlistlength: 14
+mixrampdb: 0.000000
+state: play
+song: 6
+songid: 7
+time: 25:310
+elapsed: 24.740
+bitrate: 320
+duration: 310.022
+audio: 44100:24:2
+nextsong: 7
+nextsongid: 8
+OK
+mpd:240
+client[0]:outputs
+mpd-data
+outputid: 0
+outputname: Local Music Player Daemon
+outputenabled: 1
+OK
+mpd:70
+client[0]:status
+mpd-data
+volume: 75
+repeat: 0
+random: 0
+single: 0
+consume: 0
+playlist: 2
+playlistlength: 14
+mixrampdb: 0.000000
+state: play
+song: 6
+songid: 7
+time: 25:310
+elapsed: 24.740
+bitrate: 320
+duration: 310.022
+audio: 44100:24:2
+nextsong: 7
+nextsongid: 8
+OK
+mpd:240
+client[0]:replay_gain_status
+mpd-data
+replay_gain_mode: track
+OK
+mpd:27
+client[1]:idle
+client[0]:lsinfo
+index[4981]substring[directory: Belle &]
+mpd-data
+file: OLFP.ogg
+Last-Modified: 2014-05-27T19:15:46Z
+Time: 294
+duration: 294.050
+file: Rekoil - Clean Your Pipes.ogg
+Last-Modified: 2014-05-27T19:15:45Z
+Time: 244
+duration: 244.153
+Title: Clean Your Pipes
+Artist: Rekoil
+Date: 65535-01-01
+file: Rekoil - Valor.ogg
+Last-Modified: 2014-05-27T19:15:47Z
+Time: 289
+duration: 289.414
+Title: Valor
+Artist: Rekoil
+Date: 65535-01-01
+file: ULVI.ogg
+Last-Modified: 2014-05-27T19:15:46Z
+Time: 222
+duration: 222.265
+file: fur elise (remix).mp3
+Last-Modified: 2013-07-16T12:45:44Z
+Time: 209
+duration: 208.925
+Artist: Beethoven
+Title: fur elise (remix)
+Album: Beethoven
+Genre: Classical
+file: 1-03 We Are Young (feat. Janelle Mon.ogg
+Last-Modified: 2014-05-27T19:15:50Z
+Time: 250
+duration: 249.999
+Title: We Are Young (feat. Janelle Monáe)
+Artist: Fun.
+AlbumArtist: Various
+Album: Billboard 2012 Year-End Hot 100 Songs
+Date: 2011-09-20
+Track: 3
+Disc: 1
+Genre: Alternative
+file: 14 Some Nights.ogg
+Last-Modified: 2014-05-27T19:15:51Z
+Time: 277
+duration: 277.093
+Title: Some Nights
+Artist: Fun.
+AlbumArtist: Various
+Album: Billboard 2012 Year-End Hot 100 Songs
+Date: 2012-02-21
+Track: 14
+Disc: 1
+Genre: Alternative
+file: 01 I Bet My Life.mp3
+Last-Modified: 2015-06-19T17:43:04Z
+Time: 193
+duration: 192.812
+Artist: Imagine Dragons
+AlbumArtist: Imagine Dragons
+Title: I Bet My Life
+Album: I Bet My Life - Single
+Track: 1
+Date: 2014
+Genre: Alternative
+Composer: Imagine Dragons
+Disc: 1
+file: 14 - Empire State Of Mind (Part II) Broken Down - Alicia Keys.ogg
+Last-Modified: 2014-05-27T19:15:40Z
+Time: 219
+duration: 218.994
+Album: The Element Of Freedom
+Artist: Alicia Keys
+Genre: R&B
+Title: Empire State Of Mind (Part II) Broken Down
+Track: 14
+Date: 2009-01-01
+file: 05 We're In This Together.ogg
+Last-Modified: 2014-05-27T19:15:44Z
+Time: 436
+duration: 435.976
+Title: We're In This Together
+Artist: Nine Inch Nails
+Album: The Fragile (Left)
+Date: 2002-01-01
+Genre: Pop
+Track: 5
+file: 33 Good Feeling.ogg
+Last-Modified: 2014-05-27T19:15:41Z
+Time: 247
+duration: 247.082
+Title: Good Feeling
+Artist: Flo Rida
+Album: The Official UK Top 40 Singles Chart 11-03-2012
+Date: 2012-01-01
+Track: 33
+Genre: Pop
+AlbumArtist: Various Artists
+file: 12 Edom.mp3
+Last-Modified: 2017-05-20T21:50:56Z
+Time: 495
+duration: 495.098
+Artist: Avicii
+Title: Edom
+Album: True
+Track: 12
+Genre: House
+file: 02 Wavin Flag.ogg
+Last-Modified: 2014-05-27T19:15:40Z
+Time: 226
+duration: 226.335
+Title: Wavin Flag
+Artist: K'Naan
+Album: Uk Top 40 Singles Chart 20-06-2010
+Date: 2010-01-01
+Track: 2
+Genre: Pop
+AlbumArtist: Various
+directory: 10,000 Maniacs
+Last-Modified: 2016-04-04T16:00:31Z
+directory: 3 Doors Down
+Last-Modified: 2016-04-04T15:59:45Z
+directory: 30 Seconds To Mars
+Last-Modified: 2016-04-04T16:01:24Z
+directory: A Flock Of Seagulls
+Last-Modified: 2015-06-18T17:28:06Z
+directory: A Tribe Called Quest
+Last-Modified: 2015-06-18T17:28:21Z
+directory: AC-DC
+Last-Modified: 2016-04-04T20:07:46Z
+directory: Ace of Base
+Last-Modified: 2016-04-04T16:02:56Z
+directory: Adam And The Ants
+Last-Modified: 2016-04-04T16:03:57Z
+directory: Adele
+Last-Modified: 2016-04-04T16:04:34Z
+directory: Advent
+Last-Modified: 2015-06-18T17:27:51Z
+directory: Advent Sunday Mass
+Last-Modified: 2015-06-18T17:27:52Z
+directory: Aerosmith
+Last-Modified: 2015-06-24T11:45:28Z
+directory: Aha
+Last-Modified: 2015-06-18T17:28:06Z
+directory: Aimee Mann
+Last-Modified: 2015-06-18T17:28:06Z
+directory: Al Jardine
+Last-Modified: 2015-06-18T17:28:13Z
+directory: Alabama
+Last-Modified: 2015-06-18T17:28:07Z
+directory: Alan Jackson
+Last-Modified: 2015-06-18T17:28:08Z
+directory: Alanis Morissette
+Last-Modified: 2016-04-04T13:30:43Z
+directory: Alice In Chains
+Last-Modified: 2016-04-04T16:59:11Z
+directory: Alicia Keys
+Last-Modified: 2015-06-18T17:27:14Z
+directory: Andrew Lloyd Webber
+Last-Modified: 2015-06-18T17:28:13Z
+directory: Animation
+Last-Modified: 2015-06-18T17:28:15Z
+directory: apex
+Last-Modified: 2015-06-18T18:10:54Z
+directory: Aqua
+Last-Modified: 2015-06-18T17:28:21Z
+directory: Arctic Monkeys
+Last-Modified: 2016-04-05T01:18:44Z
+directory: Audioslave
+Last-Modified: 2016-04-04T20:07:29Z
+directory: Avicii
+Last-Modified: 2016-04-04T16:55:25Z
+directory: Avril Lavigne
+Last-Modified: 2015-06-18T17:28:21Z
+directory: Avril Lavigne - Under My Skin 2004 Pop 320kbps CBR MP3 [VX]
+Last-Modified: 2017-10-21T19:36:59Z
+directory: Awolnation
+Last-Modified: 2016-04-04T16:54:10Z
+directory: B52's
+Last-Modified: 2015-06-18T17:28:23Z
+directory: Bad Company
+Last-Modified: 2015-06-18T17:28:24Z
+directory: Bangles
+Last-Modified: 2015-06-18T17:28:24Z
+directory: Barry White
+Last-Modified: 2015-06-18T17:28:24Z
+directory: Barton Fink
+Last-Modified: 2015-06-18T17:28:24Z
+directory: Bastille
+Last-Modified: 2016-04-04T16:56:12Z
+directory: Baz Luhrmann
+Last-Modified: 2015-06-18T17:28:24Z
+directory: Beach Boys
+Last-Modified: 2015-06-18T17:28:24Z
+directory: Beastie Boys
+Last-Modified: 2016-04-04T20:11:21Z
+directory: Beatles, The
+Last-Modified: 2016-04-05T00:59:28Z
+directory: Beethoven
+Last-Modified: 2016-04-05T01:11:18Z
+mpd:4982
+index[4994]substring[directory: Dave Matthew]
+mpd-data
+directory: Belle & Sebastian
+Last-Modified: 2015-06-18T17:28:33Z
+directory: Ben Harper
+Last-Modified: 2016-04-05T01:13:29Z
+directory: Benedictine Monks of Santo Domingo de Si
+Last-Modified: 2015-06-18T17:28:33Z
+directory: Benedictine Monks of Santo Domingo de Silos
+Last-Modified: 2015-06-18T17:27:17Z
+directory: Berlin
+Last-Modified: 2015-06-18T17:28:37Z
+directory: Best Coast
+Last-Modified: 2015-06-18T17:28:37Z
+directory: Big Country
+Last-Modified: 2015-06-18T17:28:42Z
+directory: Big Punisher
+Last-Modified: 2015-06-18T17:28:42Z
+directory: Big Sugar
+Last-Modified: 2015-06-18T17:28:42Z
+directory: Billie Myers
+Last-Modified: 2015-06-18T17:28:44Z
+directory: Billy Joel
+Last-Modified: 2015-06-18T17:28:45Z
+directory: Bjork
+Last-Modified: 2016-04-05T01:04:53Z
+directory: Black Eyed Peas
+Last-Modified: 2015-06-18T17:28:45Z
+directory: Blessid Union of Souls
+Last-Modified: 2016-04-05T01:01:47Z
+directory: Blind Melon
+Last-Modified: 2016-04-05T01:02:40Z
+directory: Blink 182
+Last-Modified: 2016-04-05T01:13:54Z
+directory: Blondie
+Last-Modified: 2015-06-18T17:28:51Z
+directory: Bloodhound Gang
+Last-Modified: 2015-06-18T17:28:51Z
+directory: Blues Traveler
+Last-Modified: 2015-06-18T17:28:51Z
+directory: Blur
+Last-Modified: 2016-04-05T01:12:47Z
+directory: Bob Marley
+Last-Modified: 2016-04-05T00:59:47Z
+directory: Bob Seger
+Last-Modified: 2015-06-18T17:28:51Z
+directory: Bobby Helms
+Last-Modified: 2015-06-18T17:28:51Z
+directory: Bodeans
+Last-Modified: 2016-04-05T01:01:05Z
+directory: Bon Jovi
+Last-Modified: 2016-04-05T01:04:17Z
+directory: Bonnie Tyler
+Last-Modified: 2015-06-18T17:28:53Z
+directory: Boston
+Last-Modified: 2015-06-18T17:28:53Z
+directory: Bow Wow Wow
+Last-Modified: 2015-06-18T17:28:53Z
+directory: Breaking Benjamin
+Last-Modified: 2015-06-18T17:28:53Z
+directory: Brian Adams
+Last-Modified: 2015-06-18T17:28:53Z
+directory: Brian Tracy
+Last-Modified: 2015-06-18T17:28:53Z
+directory: Brian Wilson
+Last-Modified: 2015-06-18T17:28:54Z
+directory: Bruce Hornsby & The Range
+Last-Modified: 2015-06-18T17:28:54Z
+directory: Bruce Springsteen
+Last-Modified: 2015-06-18T17:28:55Z
+directory: Bruno Mars
+Last-Modified: 2015-06-18T17:28:55Z
+directory: Burning Spear
+Last-Modified: 2015-06-18T17:28:55Z
+directory: Bush
+Last-Modified: 2015-06-18T17:28:57Z
+directory: Butthole Surfers
+Last-Modified: 2015-06-18T17:28:57Z
+directory: Buzzy Bus
+Last-Modified: 2015-06-18T17:28:57Z
+directory: C&C Music Factory
+Last-Modified: 2015-06-18T17:29:01Z
+directory: Calvin Harris
+Last-Modified: 2015-06-18T17:28:57Z
+directory: Carl Douglas
+Last-Modified: 2015-06-18T17:28:57Z
+directory: Carly Rae Jepsen
+Last-Modified: 2015-06-18T17:28:57Z
+directory: Caroline's Spine
+Last-Modified: 2016-04-05T01:10:43Z
+directory: Carrie Underwood
+Last-Modified: 2015-06-18T17:29:00Z
+directory: Cars, The
+Last-Modified: 2015-06-18T17:29:00Z
+directory: Cat Stevens
+Last-Modified: 2015-06-18T17:29:01Z
+directory: Chemical Brothers, The
+Last-Modified: 2015-06-18T17:29:01Z
+directory: Cher
+Last-Modified: 2015-06-18T17:29:01Z
+directory: Chevelle
+Last-Modified: 2016-04-05T01:12:03Z
+directory: Chevy Chase
+Last-Modified: 2015-06-18T17:29:01Z
+directory: Chris de Burgh
+Last-Modified: 2015-06-18T17:29:01Z
+directory: Chris De Burgh
+Last-Modified: 2015-06-18T17:27:17Z
+directory: Christina Perri
+Last-Modified: 2015-06-18T17:29:01Z
+directory: Chumbawamba
+Last-Modified: 2015-06-18T17:29:02Z
+directory: Cindy Lauper
+Last-Modified: 2015-06-18T17:29:02Z
+directory: Clay Walker
+Last-Modified: 2015-06-18T17:29:02Z
+directory: Coasters
+Last-Modified: 2015-06-18T17:29:02Z
+directory: Colbie Caillat
+Last-Modified: 2015-06-18T17:29:02Z
+directory: Coldplay
+Last-Modified: 2015-06-18T17:29:08Z
+directory: Collective Soul
+Last-Modified: 2015-06-18T17:29:14Z
+directory: Compilations
+Last-Modified: 2015-06-24T20:08:28Z
+directory: Cory Hart
+Last-Modified: 2015-06-18T17:34:12Z
+directory: Cracker
+Last-Modified: 2015-06-18T17:34:12Z
+directory: Cranberries
+Last-Modified: 2015-06-18T17:34:14Z
+directory: Crash Test Dummies
+Last-Modified: 2015-06-18T17:34:14Z
+directory: Crazy Town
+Last-Modified: 2015-06-18T17:34:15Z
+directory: Creed
+Last-Modified: 2015-06-18T17:34:15Z
+directory: Crowded House
+Last-Modified: 2015-06-18T17:34:16Z
+directory: Crystal Method
+Last-Modified: 2015-06-18T17:34:17Z
+directory: Cuff the Duke
+Last-Modified: 2015-06-18T17:34:17Z
+directory: Cult, The
+Last-Modified: 2015-06-18T17:34:17Z
+directory: Cure, The
+Last-Modified: 2015-06-18T17:34:17Z
+directory: Cutting Crew
+Last-Modified: 2015-06-18T17:34:18Z
+directory: Cyndi Lauper
+Last-Modified: 2015-06-18T17:34:19Z
+directory: Daft Punk
+Last-Modified: 2015-06-18T17:34:19Z
+directory: DaftPunk
+Last-Modified: 2015-06-18T17:34:19Z
+directory: Dan Fogelberg
+Last-Modified: 2015-06-18T17:34:22Z
+directory: Daniel Merriweather
+Last-Modified: 2015-06-18T17:34:22Z
+directory: Danzig
+Last-Modified: 2015-06-18T17:34:22Z
+directory: Dave Matthews Band
+Last-Modified: 2015-06-18T17:34:23Z
+directory: Dave Matthews Band Discography 1993 - 2012 (13 Albums)
+Last-Modified: 2016-04-04T20:14:58Z
+mpd:4995
+index[5001]substring[directory: Gin Blosso]
+mpd-data
+directory: Dave Matthews_Tim Reynolds
+Last-Modified: 2015-06-18T17:34:24Z
+directory: David Bowie
+Last-Modified: 2015-06-18T17:34:26Z
+directory: David Gray
+Last-Modified: 2015-06-18T17:34:28Z
+directory: David Guetta
+Last-Modified: 2015-06-18T17:34:28Z
+directory: Dead Or Alive
+Last-Modified: 2015-06-18T17:34:30Z
+directory: Deanna Carter
+Last-Modified: 2015-06-18T17:34:30Z
+directory: Debelah Morgan
+Last-Modified: 2015-06-18T17:34:30Z
+directory: Deborah Cox
+Last-Modified: 2015-06-18T17:34:30Z
+directory: Def Leppard
+Last-Modified: 2015-06-18T17:34:32Z
+directory: Deftones
+Last-Modified: 2015-06-18T17:34:33Z
+directory: Depeche Mode
+Last-Modified: 2016-04-05T01:07:06Z
+directory: Deus
+Last-Modified: 2015-06-18T17:34:38Z
+directory: Devotion
+Last-Modified: 2015-06-18T17:34:39Z
+directory: Dexys Midnight Runners
+Last-Modified: 2015-06-18T17:34:40Z
+directory: Die Trying
+Last-Modified: 2015-06-18T17:34:42Z
+directory: Dio
+Last-Modified: 2015-06-18T17:34:42Z
+directory: Dirty Dancing
+Last-Modified: 2015-06-18T17:34:42Z
+directory: Dishwalla
+Last-Modified: 2016-04-05T01:15:40Z
+directory: Disturbed
+Last-Modified: 2015-06-18T17:34:43Z
+directory: Doors, The
+Last-Modified: 2016-04-04T16:57:45Z
+directory: Dr. Dre
+Last-Modified: 2015-06-18T17:34:44Z
+directory: Duffy
+Last-Modified: 2015-06-18T17:34:47Z
+directory: Duran Duran
+Last-Modified: 2015-06-18T17:34:48Z
+directory: Eagle-Eye Cherry
+Last-Modified: 2015-06-18T17:34:48Z
+directory: Earl Nightingale
+Last-Modified: 2015-06-18T17:34:48Z
+directory: Easter
+Last-Modified: 2015-06-18T17:34:48Z
+directory: Easter Mass
+Last-Modified: 2015-06-18T17:34:48Z
+directory: Echo & the Bunnymen
+Last-Modified: 2015-06-18T17:34:48Z
+directory: Eckhart Tolle
+Last-Modified: 2015-06-18T17:34:53Z
+directory: Eddie Vedder
+Last-Modified: 2015-06-18T17:34:53Z
+directory: Eddy Grant
+Last-Modified: 2015-06-18T17:34:54Z
+directory: Edie Brickell
+Last-Modified: 2015-06-18T17:34:54Z
+directory: Edie Brickell & New Bohemians
+Last-Modified: 2015-06-18T17:34:54Z
+directory: Editors
+Last-Modified: 2015-07-03T04:57:01Z
+directory: Edwin Dingle
+Last-Modified: 2015-06-18T17:34:55Z
+directory: Emilia Torilini
+Last-Modified: 2015-06-18T17:27:17Z
+directory: Eminem
+Last-Modified: 2015-06-18T17:34:59Z
+directory: Enigma
+Last-Modified: 2015-06-18T17:35:00Z
+directory: Escala - Escala (2009)
+Last-Modified: 2015-11-09T02:08:22Z
+directory: ESPN Jock Jam
+Last-Modified: 2015-06-18T17:35:01Z
+directory: Etta James
+Last-Modified: 2015-06-18T17:35:01Z
+directory: Evanescence
+Last-Modified: 2015-06-18T17:35:01Z
+directory: Evanescence - Greatest Hits 2012 320kbps CBR MP3 [VX]
+Last-Modified: 2015-10-28T18:02:31Z
+directory: Eve 6
+Last-Modified: 2015-06-18T17:35:02Z
+directory: Everclear
+Last-Modified: 2015-06-18T17:35:02Z
+directory: Everlast
+Last-Modified: 2015-06-18T17:35:02Z
+directory: Faith No More
+Last-Modified: 2015-06-18T17:35:02Z
+directory: Falco
+Last-Modified: 2015-06-18T17:35:03Z
+directory: Faster Pussycat
+Last-Modified: 2015-06-18T17:35:03Z
+directory: Fats Domino
+Last-Modified: 2015-06-18T17:35:04Z
+directory: Feist
+Last-Modified: 2015-06-18T17:27:17Z
+directory: Filter
+Last-Modified: 2015-06-18T17:35:04Z
+directory: Finch
+Last-Modified: 2015-06-18T17:35:04Z
+directory: Finger Eleven
+Last-Modified: 2015-06-18T17:35:04Z
+directory: Fiona Apple
+Last-Modified: 2015-06-18T17:35:04Z
+directory: Five Finger Death Punch
+Last-Modified: 2015-06-18T17:35:04Z
+directory: Fleetwood Mac
+Last-Modified: 2015-06-18T17:35:04Z
+directory: Flobots
+Last-Modified: 2015-06-18T17:35:06Z
+directory: Florence + The Machine
+Last-Modified: 2015-06-18T17:35:12Z
+directory: Florence + The Machine - How Big, How Blue, How Beautiful (Deluxe Edition) [ChattChitto RG]
+Last-Modified: 2015-06-19T17:02:06Z
+directory: Focus
+Last-Modified: 2015-06-18T17:35:13Z
+directory: Folk Implosion
+Last-Modified: 2015-06-18T17:35:13Z
+directory: Foo Fighters
+Last-Modified: 2015-06-18T17:35:13Z
+directory: FOO FIGHTERS - DISCOGRAPHY (1995-14) [CHANNEL NEO]
+Last-Modified: 2015-08-18T14:15:15Z
+directory: Foreigner
+Last-Modified: 2015-06-18T17:35:13Z
+directory: Four Seasons, The
+Last-Modified: 2015-06-18T17:35:14Z
+directory: Frankie Goes To Hollywood
+Last-Modified: 2015-06-18T17:35:14Z
+directory: Front 242
+Last-Modified: 2015-06-18T17:35:17Z
+directory: Fuel
+Last-Modified: 2015-06-18T17:35:17Z
+directory: Fugees (Refugee Camp)
+Last-Modified: 2015-06-18T17:35:18Z
+directory: Fun Lovin' Criminals
+Last-Modified: 2015-06-18T17:35:18Z
+directory: Fun_
+Last-Modified: 2015-06-18T17:27:19Z
+directory: Futurabanda
+Last-Modified: 2015-06-18T17:35:19Z
+directory: Garbage
+Last-Modified: 2015-06-18T17:35:19Z
+directory: Gary Numan
+Last-Modified: 2015-06-18T17:35:19Z
+directory: George Carlin
+Last-Modified: 2015-06-18T17:35:22Z
+directory: George Harrison
+Last-Modified: 2015-11-10T03:08:29Z
+directory: George Straight
+Last-Modified: 2015-06-18T17:35:24Z
+directory: George Strait
+Last-Modified: 2015-06-18T17:35:24Z
+directory: Gerald Levert
+Last-Modified: 2015-06-18T17:35:24Z
+directory: Gillian Welch
+Last-Modified: 2015-06-18T17:35:31Z
+mpd:5002
+mpd-data
+directory: Gin Blossoms
+Last-Modified: 2015-06-18T17:35:34Z
+directory: Glee Cast
+Last-Modified: 2015-06-18T17:35:34Z
+directory: Glenn Frey
+Last-Modified: 2015-06-18T17:35:34Z
+directory: Glenn Lewis
+Last-Modified: 2015-06-18T17:35:34Z
+directory: Gloria Estefan
+Last-Modified: 2015-06-18T17:35:34Z
+directory: Godsmack
+Last-Modified: 2015-06-18T17:35:50Z
+directory: Good Charlotte
+Last-Modified: 2015-06-18T17:35:53Z
+directory: Gorillaz
+Last-Modified: 2015-06-18T17:35:53Z
+directory: Gotye
+Last-Modified: 2015-06-18T17:27:20Z
+directory: Graeme Revell
+Last-Modified: 2015-06-18T17:35:55Z
+directory: Green Day
+Last-Modified: 2015-06-18T17:35:58Z
+directory: Greg Tamblyn
+Last-Modified: 2015-06-18T17:35:59Z
+directory: Gregorian
+Last-Modified: 2015-06-18T17:35:58Z
+directory: Guns N' Roses
+Last-Modified: 2015-06-18T17:36:05Z
+directory: Hanson
+Last-Modified: 2015-06-18T17:36:05Z
+directory: Heatwave
+Last-Modified: 2015-06-18T17:36:05Z
+directory: Hedges, Michael
+Last-Modified: 2015-06-18T17:36:08Z
+directory: Hemi-Sync
+Last-Modified: 2015-06-18T17:36:46Z
+directory: Hollywood undead - American Tragedy (2011) (320)
+Last-Modified: 2016-09-15T15:29:20Z
+directory: Hoobastank
+Last-Modified: 2015-06-18T17:36:49Z
+directory: Hootie & The Blowfish
+Last-Modified: 2015-06-18T17:36:49Z
+directory: Hooverphonic
+Last-Modified: 2015-06-18T17:36:50Z
+directory: Hot Chocolate
+Last-Modified: 2015-06-18T17:36:50Z
+directory: Hmpd:1405
+Client connected.
+starting server.
+mpd-data
+OK MPD 0.20.0
+mpd:14
+Client connected.
+starting server.
+mpd-data
+OK MPD 0.20.0
+mpd:14
+client[3]:channels
+mpd-data
+OK
+mpd:3
+client[3]:idle
+client[2]:playlistinfo
+mpd-data
+file: Aerosmith/Nine Lives/01 Nine Lives.mp3
+Last-Modified: 2013-07-09T07:44:53Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Nine Lives
+Album: Nine Lives
+Track: 1
+Date: 1997
+Genre: Rock
+Time: 273
+duration: 273.469
+Pos: 0
+Id: 1
+file: Aerosmith/Nine Lives/02 Falling In Love (Is Hard On The K.mp3
+Last-Modified: 2013-07-09T09:09:12Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Falling In Love (Is Hard On The Knees)
+Album: Nine Lives
+Track: 2
+Date: 1997
+Genre: Rock
+Time: 191
+duration: 191.457
+Pos: 1
+Id: 2
+file: Aerosmith/Nine Lives/03 Hole In My Soul.mp3
+Last-Modified: 2013-07-09T06:54:13Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Hole In My Soul
+Album: Nine Lives
+Track: 3
+Date: 1997
+Genre: Rock
+Time: 353
+duration: 352.559
+Pos: 2
+Id: 3
+file: Aerosmith/Nine Lives/04 Taste Of India.mp3
+Last-Modified: 2013-07-09T06:38:13Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Taste Of India
+Album: Nine Lives
+Track: 4
+Date: 1997
+Genre: Rock
+Time: 341
+duration: 340.965
+Pos: 3
+Id: 4
+file: Aerosmith/Nine Lives/05 Full Circle.mp3
+Last-Modified: 2013-07-09T08:00:05Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Full Circle
+Album: Nine Lives
+Track: 5
+Date: 1997
+Genre: Rock
+Time: 288
+duration: 287.574
+Pos: 4
+Id: 5
+file: Aerosmith/Nine Lives/06 Something's Gotta Give.mp3
+Last-Modified: 2013-07-09T09:04:54Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Something's Gotta Give
+Album: Nine Lives
+Track: 6
+Date: 1997
+Genre: Rock
+Time: 203
+duration: 202.855
+Pos: 5
+Id: 6
+file: Aerosmith/Nine Lives/07 Ain't That A Bitch.mp3
+Last-Modified: 2013-07-09T07:13:08Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Ain't That A Bitch
+Album: Nine Lives
+Track: 7
+Date: 1997
+Genre: Rock
+Time: 310
+duration: 310.022
+Pos: 6
+Id: 7
+file: Aerosmith/Nine Lives/08 The Farm.mp3
+Last-Modified: 2013-07-09T07:21:19Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: The Farm
+Album: Nine Lives
+Track: 8
+Date: 1997
+Genre: Rock
+Time: 251
+duration: 251.240
+Pos: 7
+Id: 8
+file: Aerosmith/Nine Lives/09 Crash.mp3
+Last-Modified: 2013-07-09T09:34:21Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Crash
+Album: Nine Lives
+Track: 9
+Date: 1997
+Genre: Rock
+Time: 251
+duration: 251.423
+Pos: 8
+Id: 9
+file: Aerosmith/Nine Lives/10 Kiss Your Past Good-Bye.mp3
+Last-Modified: 2013-07-09T07:21:38Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Kiss Your Past Good-Bye
+Album: Nine Lives
+Track: 10
+Date: 1997
+Genre: Rock
+Time: 259
+duration: 259.355
+Pos: 9
+Id: 10
+file: Aerosmith/Nine Lives/11 Pink.mp3
+Last-Modified: 2013-07-09T08:31:53Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Pink
+Album: Nine Lives
+Track: 11
+Date: 1997
+Genre: Rock
+Time: 219
+duration: 218.829
+Pos: 10
+Id: 11
+file: Aerosmith/Nine Lives/12 Falling Off.mp3
+Last-Modified: 2013-07-09T08:52:37Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Falling Off
+Album: Nine Lives
+Track: 12
+Date: 1997
+Genre: Rock
+Time: 168
+duration: 167.882
+Pos: 11
+Id: 12
+file: Aerosmith/Nine Lives/13 Attitude Adjustment.mp3
+Last-Modified: 2013-07-09T06:30:10Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Attitude Adjustment
+Album: Nine Lives
+Track: 13
+Date: 1997
+Genre: Rock
+Time: 210
+duration: 210.250
+Pos: 12
+Id: 13
+file: Aerosmith/Nine Lives/14 Fallen Angels.mp3
+Last-Modified: 2013-07-09T07:59:34Z
+Artist: Aerosmith
+AlbumArtist: Aerosmith
+Title: Fallen Angels
+Album: Nine Lives
+Track: 14
+Date: 1997
+Genre: Rock
+Time: 479
+duration: 479.156
+Pos: 13
+Id: 14
+OK
+mpd:3388
+client[2]:status
+mpd-data
+volume: 75
+repeat: 0
+random: 0
+single: 0
+consume: 0
+playlist: 2
+playlistlength: 14
+mixrampdb: 0.000000
+state: play
+song: 6
+songid: 7
+time: 33:310
+elapsed: 32.774
+bitrate: 320
+duration: 310.022
+audio: 44100:24:2
+nextsong: 7
+nextsongid: 8
+OK
+mpd:240
+client[2]:status
+mpd-data
+volume: 75
+repeat: 0
+random: 0
+single: 0
+consume: 0
+playlist: 2
+playlistlength: 14
+mixrampdb: 0.000000
+state: play
+song: 6
+songid: 7
+time: 33:310
+elapsed: 32.774
+bitrate: 320
+duration: 310.022
+audio: 44100:24:2
+nextsong: 7
+nextsongid: 8
+OK
+mpd:240
+client[2]:lsinfo
+index[4981]substring[directory: Belle &]
+mpd-data
+file: OLFP.ogg
+Last-Modified: 2014-05-27T19:15:46Z
+Time: 294
+duration: 294.050
+file: Rekoil - Clean Your Pipes.ogg
+Last-Modified: 2014-05-27T19:15:45Z
+Time: 244
+duration: 244.153
+Title: Clean Your Pipes
+Artist: Rekoil
+Date: 65535-01-01
+file: Rekoil - Valor.ogg
+Last-Modified: 2014-05-27T19:15:47Z
+Time: 289
+duration: 289.414
+Title: Valor
+Artist: Rekoil
+Date: 65535-01-01
+file: ULVI.ogg
+Last-Modified: 2014-05-27T19:15:46Z
+Time: 222
+duration: 222.265
+file: fur elise (remix).mp3
+Last-Modified: 2013-07-16T12:45:44Z
+Time: 209
+duration: 208.925
+Artist: Beethoven
+Title: fur elise (remix)
+Album: Beethoven
+Genre: Classical
+file: 1-03 We Are Young (feat. Janelle Mon.ogg
+Last-Modified: 2014-05-27T19:15:50Z
+Time: 250
+duration: 249.999
+Title: We Are Young (feat. Janelle Monáe)
+Artist: Fun.
+AlbumArtist: Various
+Album: Billboard 2012 Year-End Hot 100 Songs
+Date: 2011-09-20
+Track: 3
+Disc: 1
+Genre: Alternative
+file: 14 Some Nights.ogg
+Last-Modified: 2014-05-27T19:15:51Z
+Time: 277
+duration: 277.093
+Title: Some Nights
+Artist: Fun.
+AlbumArtist: Various
+Album: Billboard 2012 Year-End Hot 100 Songs
+Date: 2012-02-21
+Track: 14
+Disc: 1
+Genre: Alternative
+file: 01 I Bet My Life.mp3
+Last-Modified: 2015-06-19T17:43:04Z
+Time: 193
+duration: 192.812
+Artist: Imagine Dragons
+AlbumArtist: Imagine Dragons
+Title: I Bet My Life
+Album: I Bet My Life - Single
+Track: 1
+Date: 2014
+Genre: Alternative
+Composer: Imagine Dragons
+Disc: 1
+file: 14 - Empire State Of Mind (Part II) Broken Down - Alicia Keys.ogg
+Last-Modified: 2014-05-27T19:15:40Z
+Time: 219
+duration: 218.994
+Album: The Element Of Freedom
+Artist: Alicia Keys
+Genre: R&B
+Title: Empire State Of Mind (Part II) Broken Down
+Track: 14
+Date: 2009-01-01
+file: 05 We're In This Together.ogg
+Last-Modified: 2014-05-27T19:15:44Z
+Time: 436
+duration: 435.976
+Title: We're In This Together
+Artist: Nine Inch Nails
+Album: The Fragile (Left)
+Date: 2002-01-01
+Genre: Pop
+Track: 5
+file: 33 Good Feeling.ogg
+Last-Modified: 2014-05-27T19:15:41Z
+Time: 247
+duration: 247.082
+Title: Good Feeling
+Artist: Flo Rida
+Album: The Official UK Top 40 Singles Chart 11-03-2012
+Date: 2012-01-01
+Track: 33
+Genre: Pop
+AlbumArtist: Various Artists
+file: 12 Edom.mp3
+Last-Modified: 2017-05-20T21:50:56Z
+Time: 495
+duration: 495.098
+Artist: Avicii
+Title: Edom
+Album: True
+Track: 12
+Genre: House
+file: 02 Wavin Flag.ogg
+Last-Modified: 2014-05-27T19:15:40Z
+Time: 226
+duration: 226.335
+Title: Wavin Flag
+Artist: K'Naan
+Album: Uk Top 40 Singles Chart 20-06-2010
+Date: 2010-01-01
+Track: 2
+Genre: Pop
+AlbumArtist: Various
+directory: 10,000 Maniacs
+Last-Modified: 2016-04-04T16:00:31Z
+directory: 3 Doors Down
+Last-Modified: 2016-04-04T15:59:45Z
+directory: 30 Seconds To Mars
+Last-Modified: 2016-04-04T16:01:24Z
+directory: A Flock Of Seagulls
+Last-Modified: 2015-06-18T17:28:06Z
+directory: A Tribe Called Quest
+Last-Modified: 2015-06-18T17:28:21Z
+directory: AC-DC
+Last-Modified: 2016-04-04T20:07:46Z
+directory: Ace of Base
+Last-Modified: 2016-04-04T16:02:56Z
+directory: Adam And The Ants
+Last-Modified: 2016-04-04T16:03:57Z
+directory: Adele
+Last-Modified: 2016-04-04T16:04:34Z
+directory: Advent
+Last-Modified: 2015-06-18T17:27:51Z
+directory: Advent Sunday Mass
+Last-Modified: 2015-06-18T17:27:52Z
+directory: Aerosmith
+Last-Modified: 2015-06-24T11:45:28Z
+directory: Aha
+Last-Modified: 2015-06-18T17:28:06Z
+directory: Aimee Mann
+Last-Modified: 2015-06-18T17:28:06Z
+directory: Al Jardine
+Last-Modified: 2015-06-18T17:28:13Z
+directory: Alabama
+Last-Modified: 2015-06-18T17:28:07Z
+directory: Alan Jackson
+Last-Modified: 2015-06-18T17:28:08Z
+directory: Alanis Morissette
+Last-Modified: 2016-04-04T13:30:43Z
+directory: Alice In Chains
+Last-Modified: 2016-04-04T16:59:11Z
+directory: Alicia Keys
+Last-Modified: 2015-06-18T17:27:14Z
+directory: Andrew Lloyd Webber
+Last-Modified: 2015-06-18T17:28:13Z
+directory: Animation
+Last-Modified: 2015-06-18T17:28:15Z
+directory: apex
+Last-Modified: 2015-06-18T18:10:54Z
+directory: Aqua
+Last-Modified: 2015-06-18T17:28:21Z
+directory: Arctic Monkeys
+Last-Modified: 2016-04-05T01:18:44Z
+directory: Audioslave
+Last-Modified: 2016-04-04T20:07:29Z
+directory: Avicii
+Last-Modified: 2016-04-04T16:55:25Z
+directory: Avril Lavigne
+Last-Modified: 2015-06-18T17:28:21Z
+directory: Avril Lavigne - Under My Skin 2004 Pop 320kbps CBR MP3 [VX]
+Last-Modified: 2017-10-21T19:36:59Z
+directory: Awolnation
+Last-Modified: 2016-04-04T16:54:10Z
+directory: B52's
+Last-Modified: 2015-06-18T17:28:23Z
+directory: Bad Company
+Last-Modified: 2015-06-18T17:28:24Z
+directory: Bangles
+Last-Modified: 2015-06-18T17:28:24Z
+directory: Barry White
+Last-Modified: 2015-06-18T17:28:24Z
+directory: Barton Fink
+Last-Modified: 2015-06-18T17:28:24Z
+directory: Bastille
+Last-Modified: 2016-04-04T16:56:12Z
+directory: Baz Luhrmann
+Last-Modified: 2015-06-18T17:28:24Z
+directory: Beach Boys
+Last-Modified: 2015-06-18T17:28:24Z
+directory: Beastie Boys
+Last-Modified: 2016-04-04T20:11:21Z
+directory: Beatles, The
+Last-Modified: 2016-04-05T00:59:28Z
+directory: Beethoven
+Last-Modified: 2016-04-05T01:11:18Z
+mpd:4982
+index[4994]substring[directory: Dave Matthew]
+mpd-data
+directory: Belle & Sebastian
+Last-Modified: 2015-06-18T17:28:33Z
+directory: Ben Harper
+Last-Modified: 2016-04-05T01:13:29Z
+directory: Benedictine Monks of Santo Domingo de Si
+Last-Modified: 2015-06-18T17:28:33Z
+directory: Benedictine Monks of Santo Domingo de Silos
+Last-Modified: 2015-06-18T17:27:17Z
+directory: Berlin
+Last-Modified: 2015-06-18T17:28:37Z
+directory: Best Coast
+Last-Modified: 2015-06-18T17:28:37Z
+directory: Big Country
+Last-Modified: 2015-06-18T17:28:42Z
+directory: Big Punisher
+Last-Modified: 2015-06-18T17:28:42Z
+directory: Big Sugar
+Last-Modified: 2015-06-18T17:28:42Z
+directory: Billie Myers
+Last-Modified: 2015-06-18T17:28:44Z
+directory: Billy Joel
+Last-Modified: 2015-06-18T17:28:45Z
+directory: Bjork
+Last-Modified: 2016-04-05T01:04:53Z
+directory: Black Eyed Peas
+Last-Modified: 2015-06-18T17:28:45Z
+directory: Blessid Union of Souls
+Last-Modified: 2016-04-05T01:01:47Z
+directory: Blind Melon
+Last-Modified: 2016-04-05T01:02:40Z
+directory: Blink 182
+Last-Modified: 2016-04-05T01:13:54Z
+directory: Blondie
+Last-Modified: 2015-06-18T17:28:51Z
+directory: Bloodhound Gang
+Last-Modified: 2015-06-18T17:28:51Z
+directory: Blues Traveler
+Last-Modified: 2015-06-18T17:28:51Z
+directory: Blur
+Last-Modified: 2016-04-05T01:12:47Z
+directory: Bob Marley
+Last-Modified: 2016-04-05T00:59:47Z
+directory: Bob Seger
+Last-Modified: 2015-06-18T17:28:51Z
+directory: Bobby Helms
+Last-Modified: 2015-06-18T17:28:51Z
+directory: Bodeans
+Last-Modified: 2016-04-05T01:01:05Z
+directory: Bon Jovi
+Last-Modified: 2016-04-05T01:04:17Z
+directory: Bonnie Tyler
+Last-Modified: 2015-06-18T17:28:53Z
+directory: Boston
+Last-Modified: 2015-06-18T17:28:53Z
+directory: Bow Wow Wow
+Last-Modified: 2015-06-18T17:28:53Z
+directory: Breaking Benjamin
+Last-Modified: 2015-06-18T17:28:53Z
+directory: Brian Adams
+Last-Modified: 2015-06-18T17:28:53Z
+directory: Brian Tracy
+Last-Modified: 2015-06-18T17:28:53Z
+directory: Brian Wilson
+Last-Modified: 2015-06-18T17:28:54Z
+directory: Bruce Hornsby & The Range
+Last-Modified: 2015-06-18T17:28:54Z
+directory: Bruce Springsteen
+Last-Modified: 2015-06-18T17:28:55Z
+directory: Bruno Mars
+Last-Modified: 2015-06-18T17:28:55Z
+directory: Burning Spear
+Last-Modified: 2015-06-18T17:28:55Z
+directory: Bush
+Last-Modified: 2015-06-18T17:28:57Z
+directory: Butthole Surfers
+Last-Modified: 2015-06-18T17:28:57Z
+directory: Buzzy Bus
+Last-Modified: 2015-06-18T17:28:57Z
+directory: C&C Music Factory
+Last-Modified: 2015-06-18T17:29:01Z
+directory: Calvin Harris
+Last-Modified: 2015-06-18T17:28:57Z
+directory: Carl Douglas
+Last-Modified: 2015-06-18T17:28:57Z
+directory: Carly Rae Jepsen
+Last-Modified: 2015-06-18T17:28:57Z
+directory: Caroline's Spine
+Last-Modified: 2016-04-05T01:10:43Z
+directory: Carrie Underwood
+Last-Modified: 2015-06-18T17:29:00Z
+directory: Cars, The
+Last-Modified: 2015-06-18T17:29:00Z
+directory: Cat Stevens
+Last-Modified: 2015-06-18T17:29:01Z
+directory: Chemical Brothers, The
+Last-Modified: 2015-06-18T17:29:01Z
+directory: Cher
+Last-Modified: 2015-06-18T17:29:01Z
+directory: Chevelle
+Last-Modified: 2016-04-05T01:12:03Z
+directory: Chevy Chase
+Last-Modified: 2015-06-18T17:29:01Z
+directory: Chris de Burgh
+Last-Modified: 2015-06-18T17:29:01Z
+directory: Chris De Burgh
+Last-Modified: 2015-06-18T17:27:17Z
+directory: Christina Perri
+Last-Modified: 2015-06-18T17:29:01Z
+directory: Chumbawamba
+Last-Modified: 2015-06-18T17:29:02Z
+directory: Cindy Lauper
+Last-Modified: 2015-06-18T17:29:02Z
+directory: Clay Walker
+Last-Modified: 2015-06-18T17:29:02Z
+directory: Coasters
+Last-Modified: 2015-06-18T17:29:02Z
+directory: Colbie Caillat
+Last-Modified: 2015-06-18T17:29:02Z
+directory: Coldplay
+Last-Modified: 2015-06-18T17:29:08Z
+directory: Collective Soul
+Last-Modified: 2015-06-18T17:29:14Z
+directory: Compilations
+Last-Modified: 2015-06-24T20:08:28Z
+directory: Cory Hart
+Last-Modified: 2015-06-18T17:34:12Z
+directory: Cracker
+Last-Modified: 2015-06-18T17:34:12Z
+directory: Cranberries
+Last-Modified: 2015-06-18T17:34:14Z
+directory: Crash Test Dummies
+Last-Modified: 2015-06-18T17:34:14Z
+directory: Crazy Town
+Last-Modified: 2015-06-18T17:34:15Z
+directory: Creed
+Last-Modified: 2015-06-18T17:34:15Z
+directory: Crowded House
+Last-Modified: 2015-06-18T17:34:16Z
+directory: Crystal Method
+Last-Modified: 2015-06-18T17:34:17Z
+directory: Cuff the Duke
+Last-Modified: 2015-06-18T17:34:17Z
+directory: Cult, The
+Last-Modified: 2015-06-18T17:34:17Z
+directory: Cure, The
+Last-Modified: 2015-06-18T17:34:17Z
+directory: Cutting Crew
+Last-Modified: 2015-06-18T17:34:18Z
+directory: Cyndi Lauper
+Last-Modified: 2015-06-18T17:34:19Z
+directory: Daft Punk
+Last-Modified: 2015-06-18T17:34:19Z
+directory: DaftPunk
+Last-Modified: 2015-06-18T17:34:19Z
+directory: Dan Fogelberg
+Last-Modified: 2015-06-18T17:34:22Z
+directory: Daniel Merriweather
+Last-Modified: 2015-06-18T17:34:22Z
+directory: Danzig
+Last-Modified: 2015-06-18T17:34:22Z
+directory: Dave Matthews Band
+Last-Modified: 2015-06-18T17:34:23Z
+directory: Dave Matthews Band Discography 1993 - 2012 (13 Albums)
+Last-Modified: 2016-04-04T20:14:58Z
+mpd:4995
+index[5001]substring[directory: Gin Blosso]
+mpd-data
+directory: Dave Matthews_Tim Reynolds
+Last-Modified: 2015-06-18T17:34:24Z
+directory: David Bowie
+Last-Modified: 2015-06-18T17:34:26Z
+directory: David Gray
+Last-Modified: 2015-06-18T17:34:28Z
+directory: David Guetta
+Last-Modified: 2015-06-18T17:34:28Z
+directory: Dead Or Alive
+Last-Modified: 2015-06-18T17:34:30Z
+directory: Deanna Carter
+Last-Modified: 2015-06-18T17:34:30Z
+directory: Debelah Morgan
+Last-Modified: 2015-06-18T17:34:30Z
+directory: Deborah Cox
+Last-Modified: 2015-06-18T17:34:30Z
+directory: Def Leppard
+Last-Modified: 2015-06-18T17:34:32Z
+directory: Deftones
+Last-Modified: 2015-06-18T17:34:33Z
+directory: Depeche Mode
+Last-Modified: 2016-04-05T01:07:06Z
+directory: Deus
+Last-Modified: 2015-06-18T17:34:38Z
+directory: Devotion
+Last-Modified: 2015-06-18T17:34:39Z
+directory: Dexys Midnight Runners
+Last-Modified: 2015-06-18T17:34:40Z
+directory: Die Trying
+Last-Modified: 2015-06-18T17:34:42Z
+directory: Dio
+Last-Modified: 2015-06-18T17:34:42Z
+directory: Dirty Dancing
+Last-Modified: 2015-06-18T17:34:42Z
+directory: Dishwalla
+Last-Modified: 2016-04-05T01:15:40Z
+directory: Disturbed
+Last-Modified: 2015-06-18T17:34:43Z
+directory: Doors, The
+Last-Modified: 2016-04-04T16:57:45Z
+directory: Dr. Dre
+Last-Modified: 2015-06-18T17:34:44Z
+directory: Duffy
+Last-Modified: 2015-06-18T17:34:47Z
+directory: Duran Duran
+Last-Modified: 2015-06-18T17:34:48Z
+directory: Eagle-Eye Cherry
+Last-Modified: 2015-06-18T17:34:48Z
+directory: Earl Nightingale
+Last-Modified: 2015-06-18T17:34:48Z
+directory: Easter
+Last-Modified: 2015-06-18T17:34:48Z
+directory: Easter Mass
+Last-Modified: 2015-06-18T17:34:48Z
+directory: Echo & the Bunnymen
+Last-Modified: 2015-06-18T17:34:48Z
+directory: Eckhart Tolle
+Last-Modified: 2015-06-18T17:34:53Z
+directory: Eddie Vedder
+Last-Modified: 2015-06-18T17:34:53Z
+directory: Eddy Grant
+Last-Modified: 2015-06-18T17:34:54Z
+directory: Edie Brickell
+Last-Modified: 2015-06-18T17:34:54Z
+directory: Edie Brickell & New Bohemians
+Last-Modified: 2015-06-18T17:34:54Z
+directory: Editors
+Last-Modified: 2015-07-03T04:57:01Z
+directory: Edwin Dingle
+Last-Modified: 2015-06-18T17:34:55Z
+directory: Emilia Torilini
+Last-Modified: 2015-06-18T17:27:17Z
+directory: Eminem
+Last-Modified: 2015-06-18T17:34:59Z
+directory: Enigma
+Last-Modified: 2015-06-18T17:35:00Z
+directory: Escala - Escala (2009)
+Last-Modified: 2015-11-09T02:08:22Z
+directory: ESPN Jock Jam
+Last-Modified: 2015-06-18T17:35:01Z
+directory: Etta James
+Last-Modified: 2015-06-18T17:35:01Z
+directory: Evanescence
+Last-Modified: 2015-06-18T17:35:01Z
+directory: Evanescence - Greatest Hits 2012 320kbps CBR MP3 [VX]
+Last-Modified: 2015-10-28T18:02:31Z
+directory: Eve 6
+Last-Modified: 2015-06-18T17:35:02Z
+directory: Everclear
+Last-Modified: 2015-06-18T17:35:02Z
+directory: Everlast
+Last-Modified: 2015-06-18T17:35:02Z
+directory: Faith No More
+Last-Modified: 2015-06-18T17:35:02Z
+directory: Falco
+Last-Modified: 2015-06-18T17:35:03Z
+directory: Faster Pussycat
+Last-Modified: 2015-06-18T17:35:03Z
+directory: Fats Domino
+Last-Modified: 2015-06-18T17:35:04Z
+directory: Feist
+Last-Modified:

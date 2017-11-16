@@ -47,39 +47,73 @@ static void clientServerThread ( int i )
 try
 	    {
             
-        ClientSocket mpd_socket ( "localhost", 6600 );
+
         std::string data;
+        int dataLength, tempVar;
         std::string substring;
+        std::string isOKsubstring;
         bool isMore = false;
-            
+        std::string::size_type index;
+        
+        ClientSocket mpd_socket ( "localhost", 6600 );
+        //mpd_socket >> data;  //get welcome message
+        //clientServer_socket[i] << data;  //pass on welcome message            
 	      while ( true )
 		{
           do {  
             mpd_socket >> data;
+            dataLength = data.length();
+            if (isMore || (dataLength == MAXRECV)) {
+                isOKsubstring = data.substr(dataLength-3, 2);
+                if (isOKsubstring == "OK") {
+                    //std::cout << "isOK found.\n";
+                    if (isMore) {
+                        data.insert(0,substring);
+                        dataLength = data.length();
+                        isMore = false;
+                    }
+                } else {
+                    if (isMore) {                         
+                        data.insert(0,substring);
+                        dataLength = data.length();
+                    } else {
+                        isMore = true;   
+                    }
+                    index = data.rfind( "\n" );
+                    if (index != (dataLength-1)) {
+                        tempVar=dataLength-index-1;
+                        substring = data.substr(index+1, tempVar);                    
+                        data.erase (index+1, tempVar);
+                    }
+                }
+            }
+
+            
+
+           // std::cout << "mpd-data\n" << data;
             std::cout << "mpd:" << data.length() << "\n";
             clientServer_socket[i] << data;
-          } while (data.length() == MAXRECV);
+          } while (isMore);
           
           do {          
             clientServer_socket[i] >> data;
-          
-            std::cout << "client:" << data;
+            dataLength = data.length();
+            if (isMore || (dataLength == MAXRECV)) {
+            std::cout << "client[" << i << "]:" << data;
             mpd_socket << data;
             
             substring = data.substr(0, 12);
-            //std::cout << "substring:" << substring << "\n";
             if (substring == "command_list") {
                 if (!isMore) {
-                std::cout << "command_list: isMore\n";
-                if (data.length() == MAXRECV) {
-                isMore = true; }
+                    if (data.length() == MAXRECV) {
+                        isMore = true; 
+                    }
                 }else {
-                    std::cout << "command_list: end\n";
                     isMore = false;
                 }
             }
            } while (data.length() == MAXRECV || isMore);
-          // isMore=false;
+            isMore = false;
 		}
 	    }
 	  catch ( SocketException& ) {}    
